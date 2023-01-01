@@ -239,7 +239,7 @@ function chalk-success-hilite() {
 # @output string Colorized string.
 # @return int `0` (true) if terminal has a dark background color.
 #
-# TODO: This needs more work in the future.
+# @todo This needs more work in the future.
 ##
 function is-chalk-on-dark-bg() {
 	if [[ -z "${COLORFGBG:-}" || "${COLORFGBG}" == '15;0' || "${COLORFGBG}" == '15;default;0' ]]; then
