@@ -6,18 +6,15 @@
 ##
 # Loads utilities.
 ##
-___cwd="$(pwd)"; # Remember CWD.
+__dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+[[ -d "${__dirname}" ]] || { echo -e "\e[0;31m"'Missing `__dirname`.'"\e[0m" >&2 && exit 1; }
 
-if ! cd "$(dirname "${BASH_SOURCE[0]}")"; then
-	echo -e "\e[38;5;255m\e[48;5;124m\e[1mFailed to CD into: ${BASH_SOURCE[0]}\e[0m\e[49m\e[39m";
-	exit 1; # Exit w/ error status.
-fi;
-. ./includes/strict-mode.bash;
-. ./includes/shell-options.bash;
+. "${__dirname}"/includes/strict-mode.bash
+. "${__dirname}"/includes/shell-options.bash
 
-for ___file in ./functions/**.bash; do
-	# shellcheck source=functions/**.bash;
-	[[ -f "${___file}" ]] && . "${___file}";
-done;
-cd "${___cwd}" || exit 1;    # Restore.
-unset ___cwd; unset ___file; # Housekeeping.
+for ___file in "${__dirname}"/functions/**.bash; do
+    # shellcheck source=/dev/null
+    # shellcheck source=functions/**.bash
+    [[ -f "${___file}" ]] && . "${___file}"
+done
+unset ___file # Housekeeping.

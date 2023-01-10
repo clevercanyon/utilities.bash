@@ -12,6 +12,6 @@
 # @return int `0` (true) on success.
 ##
 function filemtime() {
-	local file="${1:-}";
-	stat -c '%Y' "${file}"; # UTC time.
+    local file="${1:-}"
+    stat -c '%Y' "${file}" # UTC time.
 }

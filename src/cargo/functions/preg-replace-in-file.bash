@@ -18,12 +18,12 @@
 # @return int `0` (true) on success.
 ##
 function preg-replace-in-file() {
-	local regexp="${1:-}";
-	local replace="${2:-}";
-	local file="${3:-}";
+    local regexp="${1:-}"
+    local replace="${2:-}"
+    local file="${3:-}"
 
-	perl -i -0wpe 's/'"${regexp}"'/'"$(esc-reg-brs "${replace}")"'/ug' "${file}";
-};
+    perl -i -0wpe 's/'"${regexp}"'/'"$(esc-regexp-brs "${replace}")"'/ug' "${file}"
+}
 
 ##
 # Perl regexp search and replace file contents (caSe-insensitive).
@@ -40,9 +40,9 @@ function preg-replace-in-file() {
 # @return int `0` (true) on success.
 ##
 function preg-ireplace-in-file() {
-	local regexp="${1:-}";
-	local replace="${2:-}";
-	local file="${3:-}";
+    local regexp="${1:-}"
+    local replace="${2:-}"
+    local file="${3:-}"
 
-	perl -i -0wpe 's/'"${regexp}"'/'"$(esc-reg-brs "${replace}")"'/uig' "${file}";
-};
+    perl -i -0wpe 's/'"${regexp}"'/'"$(esc-regexp-brs "${replace}")"'/uig' "${file}"
+}

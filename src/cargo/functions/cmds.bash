@@ -15,12 +15,12 @@
 # @return int Exit status of command being run.
 ##
 function ::() {
-  if [[ "${1:-}" == cd || "${1:-}" == dirs ]]; then
-    builtin "${@}";
-  else
-    command "${@}"; # <https://askubuntu.com/q/512770>
-  fi;
-};
+    if [[ "${1:-}" == cd || "${1:-}" == dirs ]]; then
+        builtin "${@}"
+    else
+        command "${@}" # <https://askubuntu.com/q/512770>
+    fi
+}
 
 ##
 # Runs a command using `${PATH}`; ignoring functions.
@@ -34,9 +34,9 @@ function ::() {
 # @return int Exit status of command being run.
 ##
 function :::() {
-  if [[ "${1:-}" == cd || "${1:-}" == dirs ]]; then
-    builtin "${@}";
-  else
-    command -p "${@}"; # <https://askubuntu.com/q/512770>
-  fi;
-};
+    if [[ "${1:-}" == cd || "${1:-}" == dirs ]]; then
+        builtin "${@}"
+    else
+        command -p "${@}" # <https://askubuntu.com/q/512770>
+    fi
+}

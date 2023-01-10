@@ -6,7 +6,7 @@
 ##
 # Configures baseline shell options.
 ##
-shopt -s  extglob;
-shopt -s  dotglob;
-shopt -s globstar;
-shopt -s nullglob;
+shopt -s extglob
+shopt -s dotglob
+shopt -s globstar
+shopt -s nullglob

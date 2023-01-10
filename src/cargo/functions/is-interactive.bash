@@ -10,9 +10,9 @@
 # @return int `0` (true) if shell is interactive.
 ##
 function is-interactive() {
-	if [[ "${-}" == *i* ]]; then
-		return 0;
-	else
-		return 1;
-	fi;
+    if [[ "${-}" == *i* ]]; then
+        return 0 # True.
+    else
+        return 1 # False.
+    fi
 }

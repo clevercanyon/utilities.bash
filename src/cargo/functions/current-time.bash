@@ -10,5 +10,5 @@
 # @return int `0` (true) on success.
 ##
 function current-time() {
-	date --utc +'%s';
+    date --utc +'%s'
 }

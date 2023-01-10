@@ -10,9 +10,9 @@
 # @return int `0` (true) if is CI server.
 ##
 function is-ci() {
-	if [[ -n "${IS_CI:-}" ]]; then
-	    return 0; # True.
-	else
-		return 1;
-	fi;
+    if [[ -n "${CI:-}" && "${CI}" == true ]]; then
+        return 0 # True.
+    else
+        return 1 # False.
+    fi
 }

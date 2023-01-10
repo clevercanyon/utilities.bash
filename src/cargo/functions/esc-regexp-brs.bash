@@ -11,12 +11,12 @@
 # @output string Escaped string.
 # @return int `0` (true) on success.
 ##
-function esc-reg-brs() {
-  local str="${1:-}";
+function esc-regexp-brs() {
+    local str="${1:-}"
 
-  str="${str//@/\\@}";
-  str="${str//$/\\$}";
-  str="${str//\//\\/}";
+    str="${str//@/\\@}"
+    str="${str//$/\\$}"
+    str="${str//\//\\/}"
 
-  echo "${str}";
-};
+    echo "${str}"
+}

@@ -14,12 +14,12 @@
 # @return int `0` (true) on success.
 ##
 function preg-replace-line-in-file() {
-	local regexp="${1:-}";
-	local replace="${2:-}";
-	local file="${3:-}";
+    local regexp="${1:-}"
+    local replace="${2:-}"
+    local file="${3:-}"
 
-	perl -i -wpe 's/'"${regexp}"'/'"$(esc-reg-brs "${replace}")"'/ug' "${file}";
-};
+    perl -i -wpe 's/'"${regexp}"'/'"$(esc-regexp-brs "${replace}")"'/ug' "${file}"
+}
 
 ##
 # Perl regexp search & replace line(s) in file (caSe-insensitive).
@@ -32,9 +32,9 @@ function preg-replace-line-in-file() {
 # @return int `0` (true) on success.
 ##
 function preg-ireplace-line-in-file() {
-	local regexp="${1:-}";
-	local replace="${2:-}";
-	local file="${3:-}";
+    local regexp="${1:-}"
+    local replace="${2:-}"
+    local file="${3:-}"
 
-	perl -i -wpe 's/'"${regexp}"'/'"$(esc-reg-brs "${replace}")"'/ugi' "${file}";
-};
+    perl -i -wpe 's/'"${regexp}"'/'"$(esc-regexp-brs "${replace}")"'/ugi' "${file}"
+}
