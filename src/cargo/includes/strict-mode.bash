@@ -51,7 +51,7 @@ function stack-trace() {
     diagnostic_lines+=('Exiting with status `'"${last_command_status_code}"'`.')
     diagnostic_report="$(IFS=$'\n' && echo "${diagnostic_lines[*]}")"
 
-    echo "${diagnostic_report}"
+    echo "${diagnostic_report}"        # Lines from above.
     exit "${last_command_status_code}" # Preserves exit status.
 }
 trap 'stack-trace "${BASH_COMMAND}" "${?}"' ERR

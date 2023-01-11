@@ -80,7 +80,7 @@ function git-remote-branch-exists() {
 # @return int `0` (true) on success.
 ##
 function git-current-ref-label() {
-    git-current-branch || git-current-tag || git-current-sha --short
+    git-current-branch || git-current-tag || git-current-sha --short || return 1
 }
 
 ##
