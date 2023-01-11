@@ -49,7 +49,7 @@ function stack-trace() {
         done
     fi
     diagnostic_lines+=('Exiting with status `'"${last_command_status_code}"'`.')
-    diagnostic_report="$(IFS=$'\n' "${diagnostic_lines[*]}")"
+    diagnostic_report="$(IFS=$'\n' && echo "${diagnostic_lines[*]}")"
 
     echo "${diagnostic_report}"
     exit "${last_command_status_code}" # Preserves exit status.
