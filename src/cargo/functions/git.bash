@@ -74,6 +74,16 @@ function git-remote-branch-exists() {
 }
 
 ##
+# Gets current local git ref-label.
+#
+# @output string Current local git ref-label.
+# @return int `0` (true) on success.
+##
+function git-current-ref-label() {
+    git-current-branch || git-current-tag || git-current-sha --short
+}
+
+##
 # Gets current local git branch.
 #
 # @output string Current local git branch.
@@ -87,6 +97,45 @@ function git-current-branch() {
         return 1 # False.
     fi
     echo "${branch}"
+}
+
+##
+# Gets current local git tag.
+#
+# @output string Current local git tag.
+# @return int `0` (true) on success.
+##
+function git-current-tag() {
+    local tag='' # Initialize.
+    tag="$(git describe --tags --exact-match 2> /dev/null)"
+
+    if [[ -z "${tag}" ]]; then
+        return 1 # False.
+    fi
+    echo "${tag}"
+}
+
+##
+# Gets current local git short SHA.
+#
+# @param string ${1} Pass `--short` to get short SHA.
+#
+# @output string Current local git short SHA.
+# @return int `0` (true) on success.
+##
+function git-current-sha() {
+    local sha=''         # Initialize.
+    local short="${1:-}" # Short SHA?
+
+    if [[ "${short}" == '--short' ]]; then
+        sha="$(git rev-parse --short HEAD 2> /dev/null)"
+    else
+        sha="$(git rev-parse HEAD 2> /dev/null)"
+    fi
+    if [[ -z "${sha}" ]]; then
+        return 1 # False.
+    fi
+    echo "${sha}"
 }
 
 ##
