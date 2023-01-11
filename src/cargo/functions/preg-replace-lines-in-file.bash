@@ -13,7 +13,7 @@
 # @output void No output.
 # @return int `0` (true) on success.
 ##
-function preg-replace-line-in-file() {
+function preg-replace-lines-in-file() {
     local regexp="${1:-}"
     local replace="${2:-}"
     local file="${3:-}"
@@ -31,7 +31,7 @@ function preg-replace-line-in-file() {
 # @output void No output.
 # @return int `0` (true) on success.
 ##
-function preg-ireplace-line-in-file() {
+function preg-ireplace-lines-in-file() {
     local regexp="${1:-}"
     local replace="${2:-}"
     local file="${3:-}"

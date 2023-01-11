@@ -7,5 +7,5 @@
 # Requires root user.
 ##
 if [[ "$(whoami)" != 'root' ]]; then
-    echo 'Requires `root` user.' && exit 1
+    chalk-danger 'Requires `root` user.' >&2 && exit 1
 fi

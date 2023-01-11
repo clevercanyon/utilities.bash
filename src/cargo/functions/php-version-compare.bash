@@ -4,7 +4,7 @@
 ##
 
 ##
-# Perfoms a version comparison.
+# Perfoms a PHP version comparison.
 #
 # @param string ${1} Version to compare.
 # @param string ${2} Version to compare to.
@@ -13,7 +13,7 @@
 # @output void No output.
 # @return int `0` (true) if comparison is true.
 ##
-function version-compare() {
+function php-version-compare() {
     local v1="'${1:-}'" # Version 1.
     local v2="'${2:-}'" # Version 2.
     local op="'${3:-}'" # Comparison operator.

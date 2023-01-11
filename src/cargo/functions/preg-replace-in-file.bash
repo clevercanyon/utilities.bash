@@ -44,5 +44,5 @@ function preg-ireplace-in-file() {
     local replace="${2:-}"
     local file="${3:-}"
 
-    perl -i -0wpe 's/'"${regexp}"'/'"$(esc-regexp-brs "${replace}")"'/uig' "${file}"
+    perl -i -0wpe 's/'"${regexp}"'/'"$(esc-regexp-brs "${replace}")"'/ugi' "${file}"
 }

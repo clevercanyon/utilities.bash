@@ -4,9 +4,12 @@
 ##
 
 ##
-# Gets directory name. Drop-in replacement for `dirname`.
+# Gets directory name.
+# Drop-in replacement for `dirname`.
 #
-# @param string ${1} Space-separated list.
+# @param string ${1} Filesystem path.
+# @param int    ${2} Number of levels up. Default is `1`.
+# @param string ${3} Pass `--realpath` to resolve realpath.
 #
 # @output string Directory path.
 # @return int `0` (true) on success.
@@ -23,7 +26,7 @@ function dirname() {
         dirname="$(realpath "${dirname}")"
     fi
     while [[ "${times}" -gt 0 ]]; do
-        dirname="$(command dirname "${dirname}")"
+        dirname="$(:: dirname "${dirname}")"
         ((times--)) # Decrementer.
     done
     echo "${dirname}"

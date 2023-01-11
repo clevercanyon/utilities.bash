@@ -13,8 +13,6 @@ __dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 . "${__dirname}"/includes/shell-options.bash
 
 for ___file in "${__dirname}"/functions/**.bash; do
-    # shellcheck source=/dev/null
-    # shellcheck source=functions/**.bash
     [[ -f "${___file}" ]] && . "${___file}"
 done
 unset ___file # Housekeeping.

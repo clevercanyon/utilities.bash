@@ -8,7 +8,8 @@
 # @note Only `<custom:start.../custom:end>` will be preserved below.
 ##
 
-external-sources=true # Follow includes.
+external-sources=false # Disable.
+disable=SC1090 # Ignore external sources.
 
 disable=SC2016 # We use a lot of backticks.
 disable=SC1003 # Don't offer this single-quote escape tip.
