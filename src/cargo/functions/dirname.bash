@@ -14,7 +14,7 @@
 # @output string Directory path.
 # @return int `0` (true) on success.
 ##
-function dirname() {
+function :dirname() {
     local dirname="${1:-}"
     local times="${2:-}"
     local realpath="${3:-}"

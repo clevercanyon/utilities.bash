@@ -9,8 +9,8 @@
 # @output void No output.
 # @return int `0` (true) if in a git repo.
 ##
-function in-npm-pkg() {
-    if ! can-run npm; then
+function :in-npm-pkg() {
+    if ! :can-run npm; then
         return 1 # False.
     fi
     local prefix="$(npm prefix)"

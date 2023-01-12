@@ -9,7 +9,7 @@
 # @output void No output.
 # @return int `0` (true) if is CI server.
 ##
-function is-ci() {
+function :is-ci() {
     if [[ -n "${CI:-}" && "${CI}" == true ]]; then
         return 0 # True.
     else

@@ -9,8 +9,8 @@
 # @output void No output.
 # @return int `0` (true) if in a git repo.
 ##
-function in-git-repo() {
-    if ! can-run git; then
+function :in-git-repo() {
+    if ! :can-run git; then
         return 1 # False.
     fi
     git rev-parse --is-inside-work-tree &> /dev/null
@@ -22,7 +22,7 @@ function in-git-repo() {
 # @output string Git tree directory path.
 # @return int `0` (true) on success.
 ##
-function git-tree-dir() {
+function :git-tree-dir() {
     local dir='' # Initialize.
     dir="$(git rev-parse --show-toplevel 2> /dev/null)"
 
@@ -38,7 +38,7 @@ function git-tree-dir() {
 # @output void No output.
 # @return int `0` (true) if repo is dirty.
 ##
-function git-repo-is-dirty() {
+function :git-repo-is-dirty() {
     if [[ -n "$(git status --short 2> /dev/null)" ]]; then
         return 0 # True.
     else
@@ -54,7 +54,7 @@ function git-repo-is-dirty() {
 # @output void No output.
 # @return int `0` (true) if branch exists.
 ##
-function git-branch-exists() {
+function :git-branch-exists() {
     if [[ -z "${1:-}" ]]; then
         return 1 # False.
     fi
@@ -69,7 +69,7 @@ function git-branch-exists() {
 # @output void No output.
 # @return int `0` (true) if branch exists.
 ##
-function git-remote-branch-exists() {
+function :git-remote-branch-exists() {
     if [[ -z "${1:-}" ]]; then
         return 1 # False.
     fi
@@ -82,8 +82,8 @@ function git-remote-branch-exists() {
 # @output string Current local git ref-label.
 # @return int `0` (true) on success.
 ##
-function git-current-ref-label() {
-    git-current-branch || git-current-tag || git-current-sha --short || return 1
+function :git-current-ref-label() {
+    :git-current-branch || :git-current-tag || :git-current-sha --short || return 1
 }
 
 ##
@@ -92,7 +92,7 @@ function git-current-ref-label() {
 # @output string Current local git branch.
 # @return int `0` (true) on success.
 ##
-function git-current-branch() {
+function :git-current-branch() {
     local branch='' # Initialize.
     branch="$(git symbolic-ref --short --quiet HEAD 2> /dev/null)"
 
@@ -108,7 +108,7 @@ function git-current-branch() {
 # @output string Current local git tag.
 # @return int `0` (true) on success.
 ##
-function git-current-tag() {
+function :git-current-tag() {
     local tag='' # Initialize.
     tag="$(git describe --tags --exact-match 2> /dev/null)"
 
@@ -126,7 +126,7 @@ function git-current-tag() {
 # @output string Current local git short SHA.
 # @return int `0` (true) on success.
 ##
-function git-current-sha() {
+function :git-current-sha() {
     local sha=''         # Initialize.
     local short="${1:-}" # Short SHA?
 
@@ -151,7 +151,7 @@ function git-current-sha() {
 # @output string GitHub issue ref.
 # @return int `0` (true) on success.
 ##
-function git-github-issue-ref() {
+function :git-github-issue-ref() {
     local owner="${1:-}"
     local repo="${2:-}"
     local issue="${3:-}"
@@ -172,7 +172,7 @@ function git-github-issue-ref() {
 # @output string GitHub issue URL.
 # @return int `0` (true) on success.
 ##
-function git-github-issue-url() {
+function :git-github-issue-url() {
     local owner="${1:-}"
     local repo="${2:-}"
     local issue="${3:-}"
@@ -189,7 +189,7 @@ function git-github-issue-url() {
 # @output void No output.
 # @return int `0` (true) if local repo has a GitHub origin.
 ##
-function git-repo-has-github-origin() {
+function :git-repo-has-github-origin() {
     git remote -v | grep --perl-regexp --ignore-case '^origin\s.+?github\.com' &> /dev/null
 }
 
@@ -201,7 +201,7 @@ function git-repo-has-github-origin() {
 # @output string Parsed value. One of `owner` or `repo`.
 # @return int `0` (true) on success.
 ##
-function git-repo-github-origin-parse() {
+function :git-repo-github-origin-parse() {
     local response=''
     local parse="${1:-}"
     local owner_repo_s_regexp='s/(.+?\bgithub\.com[\/:])([^\/]+?)\/([^\/]+?)(?:\.git)?\s+\((?:fetch|push)\)\s*$/$2\/$3/ui'

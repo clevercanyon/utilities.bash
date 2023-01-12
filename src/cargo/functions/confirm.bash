@@ -11,7 +11,7 @@
 # @output string Question.
 # @return int `0` (true) if `y` (yes).
 ##
-function confirm() {
+function :confirm() {
     local question="${1:-}"
 
     if [[ -z "${question}" ]]; then

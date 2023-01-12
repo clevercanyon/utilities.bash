@@ -21,7 +21,7 @@
 # @output void No output.
 # @return int `0` (true) if can run command name.
 ##
-function p4t-can-run() {
+function :p4t-can-run() {
     local name="${1:-}"
 
     if [[ -z "${name}" ]]; then
@@ -42,7 +42,7 @@ function p4t-can-run() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-default() {
+function :p4t-chalk-default() {
     local str="${1:-}"
     echo -ne "\e[39m${str}\e[0m"
 }
@@ -55,7 +55,7 @@ function p4t-chalk-default() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-gray() {
+function :p4t-chalk-gray() {
     local str="${1:-}"
     echo -ne "\e[90m${str}\e[0m"
 }
@@ -68,7 +68,7 @@ function p4t-chalk-gray() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-black() {
+function :p4t-chalk-black() {
     local str="${1:-}"
     echo -ne "\e[30m${str}\e[0m"
 }
@@ -81,7 +81,7 @@ function p4t-chalk-black() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-red() {
+function :p4t-chalk-red() {
     local str="${1:-}"
     echo -ne "\e[31m${str}\e[0m"
 }
@@ -94,7 +94,7 @@ function p4t-chalk-red() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-green() {
+function :p4t-chalk-green() {
     local str="${1:-}"
     echo -ne "\e[32m${str}\e[0m"
 }
@@ -107,7 +107,7 @@ function p4t-chalk-green() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-yellow() {
+function :p4t-chalk-yellow() {
     local str="${1:-}"
     echo -ne "\e[33m${str}\e[0m"
 }
@@ -120,7 +120,7 @@ function p4t-chalk-yellow() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-blue() {
+function :p4t-chalk-blue() {
     local str="${1:-}"
     echo -ne "\e[34m${str}\e[0m"
 }
@@ -133,7 +133,7 @@ function p4t-chalk-blue() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-magenta() {
+function :p4t-chalk-magenta() {
     local str="${1:-}"
     echo -ne "\e[35m${str}\e[0m"
 }
@@ -146,7 +146,7 @@ function p4t-chalk-magenta() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-cyan() {
+function :p4t-chalk-cyan() {
     local str="${1:-}"
     echo -ne "\e[36m${str}\e[0m"
 }
@@ -159,7 +159,7 @@ function p4t-chalk-cyan() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-light-gray() {
+function :p4t-chalk-light-gray() {
     local str="${1:-}"
     echo -ne "\e[37m${str}\e[0m"
 }
@@ -172,7 +172,7 @@ function p4t-chalk-light-gray() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-light-red() {
+function :p4t-chalk-light-red() {
     local str="${1:-}"
     echo -ne "\e[91m${str}\e[0m"
 }
@@ -185,7 +185,7 @@ function p4t-chalk-light-red() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-light-green() {
+function :p4t-chalk-light-green() {
     local str="${1:-}"
     echo -ne "\e[92m${str}\e[0m"
 }
@@ -198,7 +198,7 @@ function p4t-chalk-light-green() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-light-yellow() {
+function :p4t-chalk-light-yellow() {
     local str="${1:-}"
     echo -ne "\e[93m${str}\e[0m"
 }
@@ -211,7 +211,7 @@ function p4t-chalk-light-yellow() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-light-blue() {
+function :p4t-chalk-light-blue() {
     local str="${1:-}"
     echo -ne "\e[94m${str}\e[0m"
 }
@@ -224,7 +224,7 @@ function p4t-chalk-light-blue() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-light-magenta() {
+function :p4t-chalk-light-magenta() {
     local str="${1:-}"
     echo -ne "\e[95m${str}\e[0m"
 }
@@ -237,7 +237,7 @@ function p4t-chalk-light-magenta() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-light-cyan() {
+function :p4t-chalk-light-cyan() {
     local str="${1:-}"
     echo -ne "\e[96m${str}\e[0m"
 }
@@ -250,7 +250,7 @@ function p4t-chalk-light-cyan() {
 # @output string Colorized string.
 # @return int `0` (true) on success.
 ##
-function p4t-chalk-white() {
+function :p4t-chalk-white() {
     local str="${1:-}"
     echo -ne "\e[97m${str}\e[0m"
 }
@@ -265,8 +265,8 @@ function p4t-chalk-white() {
 # @output void No output.
 # @return int `0` (true) if in a git repo.
 ##
-function p4t-in-git-repo() {
-    if ! p4t-can-run git; then
+function :p4t-in-git-repo() {
+    if ! :p4t-can-run git; then
         return 1 # False.
     fi
     git rev-parse --is-inside-work-tree &> /dev/null
@@ -278,7 +278,7 @@ function p4t-in-git-repo() {
 # @output string Current local git branch.
 # @return int `0` (true) on success.
 ##
-function p4t-git-current-branch() {
+function :p4t-git-current-branch() {
     local branch='' # Initialize.
     branch="$(git symbolic-ref --short --quiet HEAD 2> /dev/null)"
 
@@ -294,7 +294,7 @@ function p4t-git-current-branch() {
 # @output string Current local git tag.
 # @return int `0` (true) on success.
 ##
-function p4t-git-current-tag() {
+function :p4t-git-current-tag() {
     local tag='' # Initialize.
     tag="$(git describe --tags --exact-match 2> /dev/null)"
 
@@ -312,7 +312,7 @@ function p4t-git-current-tag() {
 # @output string Current local git short SHA.
 # @return int `0` (true) on success.
 ##
-function p4t-git-current-sha() {
+function :p4t-git-current-sha() {
     local sha=''         # Initialize.
     local short="${1:-}" # Short SHA?
 
@@ -337,8 +337,8 @@ function p4t-git-current-sha() {
 # @output void No output.
 # @return int `0` (true) if in a git repo.
 ##
-function p4t-in-npm-pkg() {
-    if ! p4t-can-run npm; then
+function :p4t-in-npm-pkg() {
+    if ! :p4t-can-run npm; then
         return 1 # False.
     fi
     local prefix="$(npm prefix)"
@@ -360,21 +360,21 @@ function p4t-in-npm-pkg() {
 # @output string Current git status.
 # @return int `0` (true) on success.
 ##
-function p4t-code-status() {
-    if ! p4t-in-git-repo; then
+function :p4t-code-status() {
+    if ! :p4t-in-git-repo; then
         return 0 # Not applicable.
     fi
     local in_git_repo_icon=''
 
     local in_npm_pkg_icon='' # Initialize.
-    p4t-in-npm-pkg && in_npm_pkg_icon=' '
+    :p4t-in-npm-pkg && in_npm_pkg_icon=' '
 
     local git_ref_icon='' gif_ref_label=''
-    git_ref_icon="" && gif_ref_label="$(p4t-git-current-branch)"
-    [[ -z "${gif_ref_label}" ]] && git_ref_icon="" && gif_ref_label="$(p4t-git-current-tag)"
-    [[ -z "${gif_ref_label}" ]] && git_ref_icon="" && gif_ref_label="$(p4t-git-current-sha --short)"
+    git_ref_icon="" && gif_ref_label="$(:p4t-git-current-branch)"
+    [[ -z "${gif_ref_label}" ]] && git_ref_icon="" && gif_ref_label="$(:p4t-git-current-tag)"
+    [[ -z "${gif_ref_label}" ]] && git_ref_icon="" && gif_ref_label="$(:p4t-git-current-sha --short)"
 
-    p4t-chalk-white "${in_git_repo_icon}${in_npm_pkg_icon} ${git_ref_icon} " && p4t-chalk-black '[' && p4t-chalk-gray "${gif_ref_label}" && p4t-chalk-black ']'
+    :p4t-chalk-white "${in_git_repo_icon}${in_npm_pkg_icon} ${git_ref_icon} " && :p4t-chalk-black '[' && :p4t-chalk-gray "${gif_ref_label}" && :p4t-chalk-black ']'
 }
 
 ##
@@ -383,13 +383,13 @@ function p4t-code-status() {
 # @output void No output.
 # @return int `0` (true) on success.
 ##
-function ___closure() {
-    local hostname="$(p4t-chalk-white "\h")"                                               # Dynamic; based on hostname.
-    local directory="$(p4t-chalk-black '[' && p4t-chalk-blue "\w" && p4t-chalk-black ']')" # Dynamic; based on current directory.
-    local code_status="\`p4t-code-status\`"                                                # Dynamic; based on current code status.
-    local prompt_symbol="$(p4t-chalk-blue "\\$")"                                          # Dynamic; changes to `%` when running as `root` user.
+function :___closure() {
+    local hostname="$(:p4t-chalk-white "\h")"                                                 # Dynamic; based on hostname.
+    local directory="$(:p4t-chalk-black '[' && :p4t-chalk-blue "\w" && :p4t-chalk-black ']')" # Dynamic; based on current directory.
+    local code_status="\`:p4t-code-status\`"                                                  # Dynamic; based on current code status.
+    local prompt_symbol="$(:p4t-chalk-blue "\\$")"                                            # Dynamic; changes to `%` when running as `root` user.
 
     export PS1="${hostname} ${directory}\n${code_status} ${prompt_symbol} " # Bash prompt; pulling all of the above together.
 
-} && ___closure
-unset -f ___closure
+} && :___closure
+unset -f :___closure

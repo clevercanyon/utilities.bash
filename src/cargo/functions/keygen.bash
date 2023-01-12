@@ -12,7 +12,7 @@
 # @output string Random key.
 # @return int `0` (true) on success.
 ##
-function keygen() {
+function :keygen() {
     local length="${1:-64}"
     local alphabet="${2:-a-zA-Z0-9}"
     tr -dc "${alphabet}" < /dev/urandom | fold -w "${length}" | head -n 1

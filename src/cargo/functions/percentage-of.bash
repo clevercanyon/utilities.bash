@@ -13,7 +13,7 @@
 # @output int Percentage rounded to an integer.
 # @return int `0` (true) on success.
 ##
-function percentage-of() {
+function :percentage-of() {
     local percent="${1:-100}"
     local of="${2:-100}"
     local round="${3:-up}"

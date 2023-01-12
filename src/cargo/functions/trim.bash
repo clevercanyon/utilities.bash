@@ -15,7 +15,7 @@
 # @output string Trimmed string.
 # @return int `0` (true) on success.
 ##
-function trim() {
+function :trim() {
     local str=''
     local chars=''
 
@@ -24,7 +24,7 @@ function trim() {
         chars="${1:-}"
 
         if [[ -n "${chars}" ]]; then
-            chars="$(esc-regexp "${chars}")"
+            chars="$(:esc-regexp "${chars}")"
             perl -0wpe 's/(?:^['"${chars}"']+|['"${chars}"']+$)//ug'
         else
             perl -0wpe 's/(?:^\s+|\s+$)//ug'
@@ -34,7 +34,7 @@ function trim() {
         chars="${2:-}"
 
         if [[ -n "${chars}" ]]; then
-            chars="$(esc-regexp "${chars}")"
+            chars="$(:esc-regexp "${chars}")"
             echo -n "${str}" | perl -0wpe 's/(?:^['"${chars}"']+|['"${chars}"']+$)//ug'
         else
             echo -n "${str}" | perl -0wpe 's/(?:^\s+|\s+$)//ug'

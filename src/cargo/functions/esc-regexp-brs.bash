@@ -11,7 +11,7 @@
 # @output string Escaped string.
 # @return int `0` (true) on success.
 ##
-function esc-regexp-brs() {
+function :esc-regexp-brs() {
     local str="${1:-}"
 
     str="${str//@/\\@}"

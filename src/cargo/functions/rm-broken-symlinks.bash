@@ -11,7 +11,7 @@
 # @output void No output.
 # @return int `0` (true) if is CI server.
 ##
-function rm-broken-symlinks() {
+function :rm-broken-symlinks() {
     local dir="${1:-}"
 
     if [[ -n "${dir}" && -d "${dir}" ]]; then

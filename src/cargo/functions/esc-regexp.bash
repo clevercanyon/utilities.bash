@@ -11,7 +11,7 @@
 # @output string Escaped string.
 # @return int `0` (true) on success.
 ##
-function esc-regexp() {
+function :esc-regexp() {
     local str="${1:-}"
     echo "${str}" | perl -0wpe 's/([.\/\\+*?[\^\]$(){}=!<>|:\-])/\\$1/ug'
 }

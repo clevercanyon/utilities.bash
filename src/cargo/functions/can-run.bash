@@ -11,7 +11,7 @@
 # @output void No output.
 # @return int `0` (true) if can run command name.
 ##
-function can-run() {
+function :can-run() {
     local name="${1:-}"
 
     if [[ -z "${name}" ]]; then

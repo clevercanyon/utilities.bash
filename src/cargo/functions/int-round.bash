@@ -12,7 +12,7 @@
 # @output int Number rounded to an integer.
 # @return int `0` (true) on success.
 ##
-function int-round() {
+function :int-round() {
     local int="${1:-0}"
     local round="${2:-up}"
 

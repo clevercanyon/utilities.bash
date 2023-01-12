@@ -11,7 +11,7 @@
 # @output string Deduped space-separated list.
 # @return int `0` (true) on success.
 ##
-function dedupe-list() {
+function :dedupe-list() {
     local list="${1:-}"
     echo "${list}" | xargs -n1 | sort -u | xargs
 }

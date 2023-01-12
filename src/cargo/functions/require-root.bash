@@ -10,8 +10,8 @@
 # @return int `0` (true) on success.
 # @exit true   Exits if not `root` user.
 ##
-function require-root() {
+function :require-root() {
     if [[ "$(whoami)" != 'root' ]]; then
-        chalk-danger 'Requires `root` user.' >&2 && exit 1
+        :chalk-danger 'Requires `root` user.' >&2 && exit 1
     fi
 }

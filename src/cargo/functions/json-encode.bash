@@ -11,10 +11,10 @@
 # @output string JSON-encoded string.
 # @return int `0` (true) on success.
 ##
-function json-encode() {
+function :json-encode() {
     local str="${1:-}"
 
-    if can-run php; then
+    if :can-run php; then
         echo -n "${str}" | php -r "echo json_encode( file_get_contents( 'php://stdin' ) );"
 
     else # This also supports everything that needs to be escaped (we think).

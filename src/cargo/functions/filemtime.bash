@@ -11,7 +11,7 @@
 # @output string Modification time (UTC).
 # @return int `0` (true) on success.
 ##
-function filemtime() {
+function :filemtime() {
     local file="${1:-}"
     stat -c '%Y' "${file}" # UTC time.
 }

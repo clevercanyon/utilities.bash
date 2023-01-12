@@ -13,12 +13,12 @@
 # @output void No output.
 # @return int `0` (true) on success.
 ##
-function preg-replace-lines-in-file() {
+function :preg-replace-lines-in-file() {
     local regexp="${1:-}"
     local replace="${2:-}"
     local file="${3:-}"
 
-    perl -i -wpe 's/'"${regexp}"'/'"$(esc-regexp-brs "${replace}")"'/ug' "${file}"
+    perl -i -wpe 's/'"${regexp}"'/'"$(:esc-regexp-brs "${replace}")"'/ug' "${file}"
 }
 
 ##
@@ -31,10 +31,10 @@ function preg-replace-lines-in-file() {
 # @output void No output.
 # @return int `0` (true) on success.
 ##
-function preg-ireplace-lines-in-file() {
+function :preg-ireplace-lines-in-file() {
     local regexp="${1:-}"
     local replace="${2:-}"
     local file="${3:-}"
 
-    perl -i -wpe 's/'"${regexp}"'/'"$(esc-regexp-brs "${replace}")"'/ugi' "${file}"
+    perl -i -wpe 's/'"${regexp}"'/'"$(:esc-regexp-brs "${replace}")"'/ugi' "${file}"
 }

@@ -17,12 +17,12 @@
 # @output void No output.
 # @return int `0` (true) on success.
 ##
-function preg-replace-in-file() {
+function :preg-replace-in-file() {
     local regexp="${1:-}"
     local replace="${2:-}"
     local file="${3:-}"
 
-    perl -i -0wpe 's/'"${regexp}"'/'"$(esc-regexp-brs "${replace}")"'/ug' "${file}"
+    perl -i -0wpe 's/'"${regexp}"'/'"$(:esc-regexp-brs "${replace}")"'/ug' "${file}"
 }
 
 ##
@@ -39,10 +39,10 @@ function preg-replace-in-file() {
 # @output void No output.
 # @return int `0` (true) on success.
 ##
-function preg-ireplace-in-file() {
+function :preg-ireplace-in-file() {
     local regexp="${1:-}"
     local replace="${2:-}"
     local file="${3:-}"
 
-    perl -i -0wpe 's/'"${regexp}"'/'"$(esc-regexp-brs "${replace}")"'/ugi' "${file}"
+    perl -i -0wpe 's/'"${regexp}"'/'"$(:esc-regexp-brs "${replace}")"'/ugi' "${file}"
 }

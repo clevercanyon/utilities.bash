@@ -18,13 +18,14 @@ set -o pipefail
 #
 # @param int ${1} Exit status code.
 ##
-function stack-trace() {
+function :stack-trace() {
     set +o xtrace
 
-    if [[ true == "${stack_traced:-}" ]]; then
+    # Checks global set by this function.
+    if [[ true == "${___stack_traced:-}" ]]; then
         return 0 # One time only.
     fi
-    stack_traced=true # Tracing now.
+    ___stack_traced=true # Tracing now.
 
     local diagnostic_lines=()
     local diagnostic_report=''
@@ -54,4 +55,4 @@ function stack-trace() {
     echo "${diagnostic_report}"        # Lines from above.
     exit "${last_command_status_code}" # Preserves exit status.
 }
-trap 'stack-trace "${BASH_COMMAND}" "${?}"' ERR
+trap ':stack-trace "${BASH_COMMAND}" "${?}"' ERR

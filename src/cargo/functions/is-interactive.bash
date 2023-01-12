@@ -9,7 +9,7 @@
 # @output void No output.
 # @return int `0` (true) if shell is interactive.
 ##
-function is-interactive() {
+function :is-interactive() {
     if [[ "${-}" == *i* ]]; then
         return 0 # True.
     else
