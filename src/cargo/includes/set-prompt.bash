@@ -10,6 +10,27 @@
 ##
 
 ##
+# CMD utilities.
+##
+
+##
+# Can run a command?
+#
+# @param string ${1} Command name.
+#
+# @output void No output.
+# @return int `0` (true) if can run command name.
+##
+function p4t-can-run() {
+    local name="${1:-}"
+
+    if [[ -z "${name}" ]]; then
+        return 1 # False.
+    fi
+    command -v "${name}" > /dev/null 2>&1
+}
+
+##
 # Chalk utilities.
 ##
 
@@ -245,6 +266,9 @@ function p4t-chalk-white() {
 # @return int `0` (true) if in a git repo.
 ##
 function p4t-in-git-repo() {
+    if ! p4t-can-run git; then
+        return 1 # False.
+    fi
     git rev-parse --is-inside-work-tree &> /dev/null
 }
 
@@ -314,6 +338,9 @@ function p4t-git-current-sha() {
 # @return int `0` (true) if in a git repo.
 ##
 function p4t-in-npm-pkg() {
+    if ! p4t-can-run npm; then
+        return 1 # False.
+    fi
     local prefix="$(npm prefix)"
 
     if [[ -n "${prefix}" && "${prefix}" != "${HOME}" && "${prefix}" != '/' && "${prefix}" != "$(npm prefix --global)" ]]; then
@@ -340,19 +367,21 @@ function p4t-code-status() {
     local in_git_repo_icon=''
 
     local in_npm_pkg_icon='' # Initialize.
-    in-npm-pkg && in_npm_pkg_icon=' '
+    p4t-in-npm-pkg && in_npm_pkg_icon=' '
 
     local git_ref_icon='' gif_ref_label=''
     git_ref_icon="" && gif_ref_label="$(p4t-git-current-branch)"
     [[ -z "${gif_ref_label}" ]] && git_ref_icon="" && gif_ref_label="$(p4t-git-current-tag)"
-    [[ -z "${gif_ref_label}" ]] && git_ref_icon="#" && gif_ref_label="$(p4t-git-current-sha --short)"
+    [[ -z "${gif_ref_label}" ]] && git_ref_icon="" && gif_ref_label="$(p4t-git-current-sha --short)"
 
-    p4t-chalk-white "${in_git_repo_icon}${in_npm_pkg_icon} ${git_ref_icon} " &&
-        p4t-chalk-black '[' && p4t-chalk-gray "${gif_ref_label}" && p4t-chalk-black ']'
+    p4t-chalk-white "${in_git_repo_icon}${in_npm_pkg_icon} ${git_ref_icon} " && p4t-chalk-black '[' && p4t-chalk-gray "${gif_ref_label}" && p4t-chalk-black ']'
 }
 
 ##
 # Exports `PS1` for bash prompt value.
+#
+# @output void No output.
+# @return int `0` (true) on success.
 ##
 function ___closure() {
     local hostname="$(p4t-chalk-white "\h")"                                               # Dynamic; based on hostname.

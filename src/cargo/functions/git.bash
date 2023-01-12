@@ -10,6 +10,9 @@
 # @return int `0` (true) if in a git repo.
 ##
 function in-git-repo() {
+    if ! can-run git; then
+        return 1 # False.
+    fi
     git rev-parse --is-inside-work-tree &> /dev/null
 }
 
