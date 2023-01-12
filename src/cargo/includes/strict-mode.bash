@@ -54,5 +54,5 @@ function :stack-trace() {
 
     echo "${diagnostic_report}"        # Lines from above.
     exit "${last_command_status_code}" # Preserves exit status.
-}
-trap ':stack-trace "${BASH_COMMAND}" "${?}"' ERR
+
+} && trap ':stack-trace "${BASH_COMMAND}" "${?}"' ERR

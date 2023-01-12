@@ -148,7 +148,7 @@ function :::() {
 # Runs a command using `${PATH}`; ignoring functions.
 # Uses a system default `${PATH}` via `/etc/paths` + `/etc/paths.d`.
 # Similar behavior exhibited by `/usr/libexec/path_helper -s` on macOS, *except*;
-# if `~/Brew|/opt/homebrew` exists, it will be additionally prepended to system default `${PATH}`.
+# if `/opt/homebrew` exists, it will be additionally prepended to system default `${PATH}`.
 #
 # @param string ${1} Command name.
 # @param mixed ...${@} Variadic.
@@ -161,9 +161,7 @@ function ::::() {
     # Concatenates paths, removes empty|comment lines, then joins lines with a `:` colon.
     local path="$(cat /etc/paths /etc/paths.d/* | :no-empty-lines --no-comment-lines | tr '\n' ':')"
 
-    if [[ -d ~/Brew ]]; then
-        path=~/Brew/bin:~/Brew/sbin:"${path}"
-    elif [[ -d /opt/homebrew ]]; then
+    if [[ -d /opt/homebrew ]]; then
         path=/opt/homebrew/bin:/opt/homebrew/sbin:"${path}"
     fi
     if :is-builtin "${cmd}"; then

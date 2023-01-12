@@ -14,5 +14,4 @@ ___dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 
 for ___file in "${___dirname}"/functions/**.bash; do
     [[ -f "${___file}" ]] && . "${___file}"
-done
-unset ___dirname && unset ___file # Housekeeping.
+done && unset ___dirname && unset ___file # Housekeeping.
