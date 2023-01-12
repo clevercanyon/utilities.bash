@@ -42,6 +42,6 @@ function :___closure() {
     local code_status="\`:p4t-code-status\`"                                      # Dynamic; based on current code status.
     local prompt_symbol="$(:chalk-blue "\\$")"                                    # Dynamic; changes to `%` when running as `root` user.
 
-    export PS1="${hostname} ${directory}\n${code_status} ${prompt_symbol} " # Bash prompt; pulling all of the above together.
+    export PS1="${hostname} ${directory}\n${code_status}  ${prompt_symbol} " # Bash prompt; pulling all of the above together.
 
 } && :___closure && unset -f :___closure
