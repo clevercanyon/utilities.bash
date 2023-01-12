@@ -11,5 +11,4 @@ set +o nounset
 set +o errexit
 set +o errtrace
 set +o pipefail
-
 trap - ERR

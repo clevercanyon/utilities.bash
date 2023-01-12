@@ -4,6 +4,237 @@
 ##
 
 ##
+# Default + 16 most basic named colorizers.
+# Actual colors vary based on terminal configuration.
+##
+
+##
+# Colorizes a string in default color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-default() {
+    local str="${1:-}"
+    echo -ne "\e[39m${str}\e[0m"
+}
+
+##
+# Colorizes a string in black color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-black() {
+    local str="${1:-}"
+    echo -ne "\e[30m${str}\e[0m"
+}
+
+##
+# Colorizes a string in red color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-red() {
+    local str="${1:-}"
+    echo -ne "\e[31m${str}\e[0m"
+}
+
+##
+# Colorizes a string in green color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-green() {
+    local str="${1:-}"
+    echo -ne "\e[32m${str}\e[0m"
+}
+
+##
+# Colorizes a string in yellow color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-yellow() {
+    local str="${1:-}"
+    echo -ne "\e[33m${str}\e[0m"
+}
+
+##
+# Colorizes a string in blue color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-blue() {
+    local str="${1:-}"
+    echo -ne "\e[34m${str}\e[0m"
+}
+
+##
+# Colorizes a string in magenta color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-magenta() {
+    local str="${1:-}"
+    echo -ne "\e[35m${str}\e[0m"
+}
+
+##
+# Colorizes a string in cyan color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-cyan() {
+    local str="${1:-}"
+    echo -ne "\e[36m${str}\e[0m"
+}
+
+##
+# Colorizes a string in light gray color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-light-gray() {
+    local str="${1:-}"
+    echo -ne "\e[37m${str}\e[0m"
+}
+
+##
+# Colorizes a string in dark gray color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-dark-gray() {
+    local str="${1:-}"
+    echo -ne "\e[90m${str}\e[0m"
+}
+
+##
+# Colorizes a string in light red color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-light-red() {
+    local str="${1:-}"
+    echo -ne "\e[91m${str}\e[0m"
+}
+
+##
+# Colorizes a string in light green color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-light-green() {
+    local str="${1:-}"
+    echo -ne "\e[92m${str}\e[0m"
+}
+
+##
+# Colorizes a string in light yellow color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-light-yellow() {
+    local str="${1:-}"
+    echo -ne "\e[93m${str}\e[0m"
+}
+
+##
+# Colorizes a string in light blue color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-light-blue() {
+    local str="${1:-}"
+    echo -ne "\e[94m${str}\e[0m"
+}
+
+##
+# Colorizes a string in light magenta color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-light-magenta() {
+    local str="${1:-}"
+    echo -ne "\e[95m${str}\e[0m"
+}
+
+##
+# Colorizes a string in light cyan color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-light-cyan() {
+    local str="${1:-}"
+    echo -ne "\e[96m${str}\e[0m"
+}
+
+##
+# Colorizes a string in white color.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function chalk-white() {
+    local str="${1:-}"
+    echo -ne "\e[97m${str}\e[0m"
+}
+
+##
+# Named output utilities following Bootstrap convention.
+# Colors are explicit, but adapt to light|dark backgrounds.
+##
+
+##
 # Outputs a new line.
 #
 # @output string New line.
@@ -18,7 +249,14 @@ function chalk-new-line() { echo; }
 # @return int `0` (true) on success.
 ##
 function chalk-horiz-line {
-    echo '----------------------------------------------------------------------------------------------------'
+    local color="${1:-}"
+    local line='----------------------------------------------------------------------------------------------------'
+
+    if [[ -n "${color}" ]]; then
+        echo -e "$(chalk-"${color}" "${line}")"
+    else
+        echo -e "${line}"
+    fi
 }
 
 ##
@@ -46,11 +284,11 @@ function chalk-heading() {
     local str="${1:-}"
 
     if ! is-term-256-colors; then
-        echo "${str}"
+        echo -e "${str}"
     elif is-term-on-dark-bg; then
-        echo -e "\e[38;5;212m\e[1m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;212m\e[1m${str}\e[0m"
     else
-        echo -e "\e[38;5;132m\e[1m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;132m\e[1m${str}\e[0m"
     fi
 }
 
@@ -68,21 +306,13 @@ function chalk-log() {
     local str="${1:-}"
 
     if ! is-term-256-colors; then
-        echo "${str}"
+        echo -e "${str}"
     elif is-term-on-dark-bg; then
-        echo -e "\e[38;5;255m\e[2m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;255m\e[2m${str}\e[0m"
     else
-        echo -e "\e[38;5;232m\e[2m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;232m\e[2m${str}\e[0m"
     fi
 }
-
-####
-# Colorized output inspired by Bootstrap alerts: `info|warning|danger|success`.
-##
-
-# The hilite variants below use a background instead; i.e., behind white text to grab extra attention.
-# Note: `info` = blue, `warning` = orange, `danger` = red, `success` = green.
-# {@see https://getbootstrap.com/docs/4.0/components/alerts/}.
 
 ##
 # Outputs string in a dynamic blue color.
@@ -96,11 +326,11 @@ function chalk-info() {
     local str="${1:-}"
 
     if ! is-term-256-colors; then
-        echo "${str}"
+        echo -e "${str}"
     elif is-term-on-dark-bg; then
-        echo -e "\e[38;5;39m\e[1m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;39m\e[1m${str}\e[0m"
     else
-        echo -e "\e[38;5;26m\e[1m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;26m\e[1m${str}\e[0m"
     fi
 }
 
@@ -118,9 +348,9 @@ function chalk-info-hilite() {
     local str="${1:-}"
 
     if ! is-term-256-colors; then
-        echo "${str}"
+        echo -e "${str}"
     else
-        echo -e "\e[38;5;255m\e[48;5;26m\e[1m${str}\e[0m\e[49m\e[39m"
+        echo -e "\e[38;5;255m\e[48;5;26m\e[1m${str}\e[0m"
     fi
 }
 
@@ -136,11 +366,11 @@ function chalk-warning() {
     local str="${1:-}"
 
     if ! is-term-256-colors; then
-        echo "${str}"
+        echo -e "${str}"
     elif is-term-on-dark-bg; then
-        echo -e "\e[38;5;214m\e[1m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;214m\e[1m${str}\e[0m"
     else
-        echo -e "\e[38;5;130m\e[1m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;130m\e[1m${str}\e[0m"
     fi
 }
 
@@ -158,9 +388,9 @@ function chalk-warning-hilite() {
     local str="${1:-}"
 
     if ! is-term-256-colors; then
-        echo "${str}"
+        echo -e "${str}"
     else
-        echo -e "\e[38;5;255m\e[48;5;130m\e[1m${str}\e[0m\e[49m\e[39m"
+        echo -e "\e[38;5;255m\e[48;5;130m\e[1m${str}\e[0m"
     fi
 }
 
@@ -176,11 +406,11 @@ function chalk-danger() {
     local str="${1:-}"
 
     if ! is-term-256-colors; then
-        echo "${str}"
+        echo -e "${str}"
     elif is-term-on-dark-bg; then
-        echo -e "\e[38;5;203m\e[1m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;203m\e[1m${str}\e[0m"
     else
-        echo -e "\e[38;5;124m\e[1m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;124m\e[1m${str}\e[0m"
     fi
 }
 
@@ -198,9 +428,9 @@ function chalk-danger-hilite() {
     local str="${1:-}"
 
     if ! is-term-256-colors; then
-        echo "${str}"
+        echo -e "${str}"
     else
-        echo -e "\e[38;5;255m\e[48;5;124m\e[1m${str}\e[0m\e[49m\e[39m"
+        echo -e "\e[38;5;255m\e[48;5;124m\e[1m${str}\e[0m"
     fi
 }
 
@@ -216,11 +446,11 @@ function chalk-success() {
     local str="${1:-}"
 
     if ! is-term-256-colors; then
-        echo "${str}"
+        echo -e "${str}"
     elif is-term-on-dark-bg; then
-        echo -e "\e[38;5;41m\e[1m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;41m\e[1m${str}\e[0m"
     else
-        echo -e "\e[38;5;28m\e[1m${str}\e[0m\e[39m"
+        echo -e "\e[38;5;28m\e[1m${str}\e[0m"
     fi
 }
 
@@ -238,8 +468,8 @@ function chalk-success-hilite() {
     local str="${1:-}"
 
     if ! is-term-256-colors; then
-        echo "${str}"
+        echo -e "${str}"
     else
-        echo -e "\e[38;5;255m\e[48;5;28m\e[1m${str}\e[0m\e[49m\e[39m"
+        echo -e "\e[38;5;255m\e[48;5;28m\e[1m${str}\e[0m"
     fi
 }
