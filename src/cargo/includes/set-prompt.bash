@@ -20,7 +20,7 @@ function :p4t-code-status() {
     local in_git_repo_icon=''
 
     local in_npm_pkg_icon='' # Initialize.
-    :p4t-in-npm-pkg && in_npm_pkg_icon=' '
+    :in-npm-pkg && in_npm_pkg_icon=' '
 
     local git_ref_icon='' gif_ref_label=''
     git_ref_icon="" && gif_ref_label="$(:git-current-branch)"
