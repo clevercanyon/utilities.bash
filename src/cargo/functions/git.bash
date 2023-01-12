@@ -41,9 +41,8 @@ function :git-tree-dir() {
 function :git-repo-is-dirty() {
     if [[ -n "$(git status --short 2> /dev/null)" ]]; then
         return 0 # True.
-    else
-        return 1 # False.
     fi
+    return 1 # False.
 }
 
 ##

@@ -17,7 +17,6 @@
 function :is-term-on-dark-bg() {
     if [[ -z "${COLORFGBG:-}" || "${COLORFGBG}" == '15;0' || "${COLORFGBG}" == '15;default;0' ]]; then
         return 0 # True; {@see https://o5p.me/BAkbEq}.
-    else
-        return 1 # False.
     fi
+    return 1 # False.
 }

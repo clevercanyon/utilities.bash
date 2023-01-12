@@ -21,7 +21,6 @@ function :is-term-256-colors() {
 
     elif :can-run tput && (($(tput colors 2> /dev/null) >= 256)); then
         return 0 # True.
-    else
-        return 1 # False.
     fi
+    return 1 # False.
 }

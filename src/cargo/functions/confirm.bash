@@ -21,7 +21,6 @@ function :confirm() {
 
     if [[ "${REPLY:-}" =~ ^[Yy]$ ]]; then
         return 0 # True.
-    else
-        return 1 # False.
     fi
+    return 1 # False.
 }

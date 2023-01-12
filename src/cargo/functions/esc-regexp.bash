@@ -13,5 +13,6 @@
 ##
 function :esc-regexp() {
     local str="${1:-}"
+
     echo "${str}" | perl -0wpe 's/([.\/\\+*?[\^\]$(){}=!<>|:\-])/\\$1/ug'
 }

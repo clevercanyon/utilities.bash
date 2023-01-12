@@ -20,7 +20,6 @@ function :php-version-compare() {
 
     if :can-run php && [[ "$(php -r 'echo (int) version_compare('"${v1}"', '"${v2}"', '"${op}"');')" == 1 ]]; then
         return 0 # True.
-    else
-        return 1 # False.
     fi
+    return 1 # False.
 }

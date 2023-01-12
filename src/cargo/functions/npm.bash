@@ -13,11 +13,13 @@ function :in-npm-pkg() {
     if ! :can-run npm; then
         return 1 # False.
     fi
-    local prefix="$(npm prefix)"
-
-    if [[ -n "${prefix}" && "${prefix}" != "${HOME}" && "${prefix}" != '/' && "${prefix}" != "$(npm prefix --global)" ]]; then
+    if [[ -f "$(pwd)"/package.json ]]; then
         return 0 # True.
-    else
-        return 1 # False.
     fi
+    local prefix="$(npm prefix)" # Current prefix.
+
+    if [[ -n "${prefix}" && -f "${prefix}"/package.json ]]; then
+        return 0 # True.
+    fi
+    return 1 # False.
 }

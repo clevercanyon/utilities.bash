@@ -13,5 +13,6 @@
 ##
 function :filemtime() {
     local file="${1:-}"
+
     stat -c '%Y' "${file}" # UTC time.
 }

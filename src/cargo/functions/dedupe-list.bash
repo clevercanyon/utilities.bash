@@ -13,5 +13,6 @@
 ##
 function :dedupe-list() {
     local list="${1:-}"
+
     echo "${list}" | xargs -n1 | sort -u | xargs
 }

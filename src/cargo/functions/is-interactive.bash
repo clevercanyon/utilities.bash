@@ -12,7 +12,6 @@
 function :is-interactive() {
     if [[ "${-}" == *i* ]]; then
         return 0 # True.
-    else
-        return 1 # False.
     fi
+    return 1 # False.
 }
