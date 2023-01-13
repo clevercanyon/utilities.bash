@@ -6,11 +6,14 @@
 ##
 # Loads utilities.
 ##
-___dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-[[ -d "${___dirname}" ]] || { echo -e "\x01\e[31m\x02"'Missing `___dirname`.'"\x01\e[0m\x02" >&2 && exit 1; }
+function :___load_closure() {
+    local __dirname _function_file # Initialize.
 
-. "${___dirname}"/includes/strict-mode.bash
+    local __dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+    [[ -d "${__dirname}" ]] || { echo -e "\x01\e[31m\x02"'Missing `__dirname`.'"\x01\e[0m\x02" >&2 && exit 1; }
+    . "${__dirname}"/includes/strict-mode.bash
 
-for ___file in "${___dirname}"/functions/**.bash; do
-    [[ -f "${___file}" ]] && . "${___file}"
-done && unset ___dirname && unset ___file # Housekeeping.
+    for _function_file in "${__dirname}"/functions/**.bash; do
+        [[ -f "${_function_file}" ]] && . "${_function_file}"
+    done
+} && :___load_closure && unset -f :___load_closure
