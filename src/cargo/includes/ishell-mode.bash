@@ -62,6 +62,7 @@ function :___ishell_mode_closure() {
     BASH_COMPLETION_COMPAT_DIR=/dev/null
 
     if [[ -f /opt/homebrew/etc/bash_completion ]]; then
+        export BREW_PREFIX=/opt/homebrew    # For use in `~/.bash_completion`.
         . /opt/homebrew/etc/bash_completion # Pulls in `~/.bash_completion`.
 
     elif [[ -f /usr/local/etc/bash_completion ]]; then
