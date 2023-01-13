@@ -19,13 +19,14 @@ set -o pipefail
 # @param int ${1} Exit status code.
 ##
 function :stack-trace() {
-    set +o xtrace
+    set +o xtrace # One time only.
 
     # Checks global set by this function.
-    if [[ true == "${___stack_traced:-}" ]]; then
+    if [[ -n "${___stack_traced___:-}" &&
+        "${___stack_traced___}" == true ]]; then
         return 0 # One time only.
     fi
-    ___stack_traced=true # Tracing now.
+    ___stack_traced___=true # Tracing now.
 
     local diagnostic_lines=()
     local diagnostic_report=''

@@ -25,6 +25,10 @@
 ##
 function :chalk-default() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[39m\x02${str}\x01\e[0m\x02"
 }
 
@@ -38,6 +42,10 @@ function :chalk-default() {
 ##
 function :chalk-gray() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[90m\x02${str}\x01\e[0m\x02"
 }
 
@@ -51,6 +59,10 @@ function :chalk-gray() {
 ##
 function :chalk-black() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[30m\x02${str}\x01\e[0m\x02"
 }
 
@@ -64,6 +76,10 @@ function :chalk-black() {
 ##
 function :chalk-red() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[31m\x02${str}\x01\e[0m\x02"
 }
 
@@ -77,6 +93,10 @@ function :chalk-red() {
 ##
 function :chalk-green() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[32m\x02${str}\x01\e[0m\x02"
 }
 
@@ -90,6 +110,10 @@ function :chalk-green() {
 ##
 function :chalk-yellow() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[33m\x02${str}\x01\e[0m\x02"
 }
 
@@ -103,6 +127,10 @@ function :chalk-yellow() {
 ##
 function :chalk-blue() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[34m\x02${str}\x01\e[0m\x02"
 }
 
@@ -116,6 +144,10 @@ function :chalk-blue() {
 ##
 function :chalk-magenta() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[35m\x02${str}\x01\e[0m\x02"
 }
 
@@ -129,6 +161,10 @@ function :chalk-magenta() {
 ##
 function :chalk-cyan() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[36m\x02${str}\x01\e[0m\x02"
 }
 
@@ -142,6 +178,10 @@ function :chalk-cyan() {
 ##
 function :chalk-light-gray() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[37m\x02${str}\x01\e[0m\x02"
 }
 
@@ -155,6 +195,10 @@ function :chalk-light-gray() {
 ##
 function :chalk-light-red() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[91m\x02${str}\x01\e[0m\x02"
 }
 
@@ -168,6 +212,10 @@ function :chalk-light-red() {
 ##
 function :chalk-light-green() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[92m\x02${str}\x01\e[0m\x02"
 }
 
@@ -181,6 +229,10 @@ function :chalk-light-green() {
 ##
 function :chalk-light-yellow() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[93m\x02${str}\x01\e[0m\x02"
 }
 
@@ -194,6 +246,10 @@ function :chalk-light-yellow() {
 ##
 function :chalk-light-blue() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[94m\x02${str}\x01\e[0m\x02"
 }
 
@@ -207,6 +263,10 @@ function :chalk-light-blue() {
 ##
 function :chalk-light-magenta() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[95m\x02${str}\x01\e[0m\x02"
 }
 
@@ -220,6 +280,10 @@ function :chalk-light-magenta() {
 ##
 function :chalk-light-cyan() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[96m\x02${str}\x01\e[0m\x02"
 }
 
@@ -233,6 +297,10 @@ function :chalk-light-cyan() {
 ##
 function :chalk-white() {
     local str="${1:-}"
+
+    if ! :is-term-16-colors; then
+        echo -ne "${str}" && return 0
+    fi
     echo -ne "\x01\e[97m\x02${str}\x01\e[0m\x02"
 }
 
@@ -240,6 +308,19 @@ function :chalk-white() {
 # Named output utilities following Bootstrap convention.
 # Colors are explicit, but adapt to light|dark backgrounds.
 ##
+
+##
+# Outputs a string.
+#
+# @param string ${1} String.
+#
+# @output string Colorized string.
+# @return int `0` (true) on success.
+##
+function :chalk-output() {
+    local str="${1:-}"
+    echo -e "${str}"
+}
 
 ##
 # Outputs a new line.
@@ -265,19 +346,6 @@ function :chalk-horiz-line {
     else
         echo -e "${line}"
     fi
-}
-
-##
-# Outputs a string in default color.
-#
-# @param string ${1} String.
-#
-# @output string Colorized string.
-# @return int `0` (true) on success.
-##
-function :chalk-output() {
-    local str="${1:-}"
-    echo -e "${str}"
 }
 
 ##
