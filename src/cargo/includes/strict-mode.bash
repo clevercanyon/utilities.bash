@@ -33,11 +33,11 @@ function :stack-trace() {
     local last_command="${1:-}"
     local last_command_status_code="${2:-1}"
 
-    # Dividing lines are exactly 100 bytes in length.
-    diagnostic_lines+=('----------------------------------------------------------------------------------------------------')
+    # Dividing lines are exactly 75 bytes in length.
+    diagnostic_lines+=('---------------------------------------------------------------------------')
     if [[ -n "${C10N_BASH_STACK_TRACE_SCRIPT_DESCRIPTION:-}" ]]; then
         diagnostic_lines+=("${C10N_BASH_STACK_TRACE_SCRIPT_DESCRIPTION}")
-        diagnostic_lines+=('----------------------------------------------------------------------------------------------------')
+        diagnostic_lines+=('---------------------------------------------------------------------------')
     fi
     diagnostic_lines+=('Error in '"${BASH_SOURCE[1]}"':'"${BASH_LINENO[0]}")
     diagnostic_lines+=('`'"${last_command}"'` exited with status `'"${last_command_status_code}"'`.')
@@ -52,7 +52,7 @@ function :stack-trace() {
     diagnostic_lines+=('Exiting with status `'"${last_command_status_code}"'`.')
     diagnostic_report="$(IFS=$'\n' && echo "${diagnostic_lines[*]}")"
 
-    echo "${diagnostic_report}"        # Lines from above.
-    exit "${last_command_status_code}" # Preserves exit status.
+    echo -e "\x01\e[90m\x02${diagnostic_report}\x01\e[0m\x02" >&2 # Lines from above.
+    exit "${last_command_status_code}"                            # Preserves exit status.
 
 } && trap ':stack-trace "${BASH_COMMAND}" "${?}"' ERR

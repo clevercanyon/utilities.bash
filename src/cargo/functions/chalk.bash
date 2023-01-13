@@ -4,6 +4,13 @@
 ##
 
 ##
+# References for colorization codes.
+#
+# @see https://misc.flogisoft.com/bash/tip_colors_and_formatting
+# @see https://stackoverflow.com/a/19501528 ... regarding `\x01` and `\x02`.
+##
+
+##
 # Default + 16 most basic named colorizers.
 # Actual colors vary based on terminal configuration.
 ##
@@ -18,7 +25,7 @@
 ##
 function :chalk-default() {
     local str="${1:-}"
-    echo -ne "\e[39m${str}\e[0m"
+    echo -ne "\x01\e[39m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -31,7 +38,7 @@ function :chalk-default() {
 ##
 function :chalk-gray() {
     local str="${1:-}"
-    echo -ne "\e[90m${str}\e[0m"
+    echo -ne "\x01\e[90m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -44,7 +51,7 @@ function :chalk-gray() {
 ##
 function :chalk-black() {
     local str="${1:-}"
-    echo -ne "\e[30m${str}\e[0m"
+    echo -ne "\x01\e[30m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -57,7 +64,7 @@ function :chalk-black() {
 ##
 function :chalk-red() {
     local str="${1:-}"
-    echo -ne "\e[31m${str}\e[0m"
+    echo -ne "\x01\e[31m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -70,7 +77,7 @@ function :chalk-red() {
 ##
 function :chalk-green() {
     local str="${1:-}"
-    echo -ne "\e[32m${str}\e[0m"
+    echo -ne "\x01\e[32m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -83,7 +90,7 @@ function :chalk-green() {
 ##
 function :chalk-yellow() {
     local str="${1:-}"
-    echo -ne "\e[33m${str}\e[0m"
+    echo -ne "\x01\e[33m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -96,7 +103,7 @@ function :chalk-yellow() {
 ##
 function :chalk-blue() {
     local str="${1:-}"
-    echo -ne "\e[34m${str}\e[0m"
+    echo -ne "\x01\e[34m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -109,7 +116,7 @@ function :chalk-blue() {
 ##
 function :chalk-magenta() {
     local str="${1:-}"
-    echo -ne "\e[35m${str}\e[0m"
+    echo -ne "\x01\e[35m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -122,7 +129,7 @@ function :chalk-magenta() {
 ##
 function :chalk-cyan() {
     local str="${1:-}"
-    echo -ne "\e[36m${str}\e[0m"
+    echo -ne "\x01\e[36m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -135,7 +142,7 @@ function :chalk-cyan() {
 ##
 function :chalk-light-gray() {
     local str="${1:-}"
-    echo -ne "\e[37m${str}\e[0m"
+    echo -ne "\x01\e[37m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -148,7 +155,7 @@ function :chalk-light-gray() {
 ##
 function :chalk-light-red() {
     local str="${1:-}"
-    echo -ne "\e[91m${str}\e[0m"
+    echo -ne "\x01\e[91m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -161,7 +168,7 @@ function :chalk-light-red() {
 ##
 function :chalk-light-green() {
     local str="${1:-}"
-    echo -ne "\e[92m${str}\e[0m"
+    echo -ne "\x01\e[92m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -174,7 +181,7 @@ function :chalk-light-green() {
 ##
 function :chalk-light-yellow() {
     local str="${1:-}"
-    echo -ne "\e[93m${str}\e[0m"
+    echo -ne "\x01\e[93m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -187,7 +194,7 @@ function :chalk-light-yellow() {
 ##
 function :chalk-light-blue() {
     local str="${1:-}"
-    echo -ne "\e[94m${str}\e[0m"
+    echo -ne "\x01\e[94m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -200,7 +207,7 @@ function :chalk-light-blue() {
 ##
 function :chalk-light-magenta() {
     local str="${1:-}"
-    echo -ne "\e[95m${str}\e[0m"
+    echo -ne "\x01\e[95m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -213,7 +220,7 @@ function :chalk-light-magenta() {
 ##
 function :chalk-light-cyan() {
     local str="${1:-}"
-    echo -ne "\e[96m${str}\e[0m"
+    echo -ne "\x01\e[96m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -226,7 +233,7 @@ function :chalk-light-cyan() {
 ##
 function :chalk-white() {
     local str="${1:-}"
-    echo -ne "\e[97m${str}\e[0m"
+    echo -ne "\x01\e[97m\x02${str}\x01\e[0m\x02"
 }
 
 ##
@@ -244,13 +251,14 @@ function :chalk-new-line() { echo; }
 
 ##
 # Outputs a horizontal line.
+# Exactly 75 bytes in length.
 #
 # @output string Horizontal line.
 # @return int `0` (true) on success.
 ##
 function :chalk-horiz-line {
     local color="${1:-}"
-    local line='----------------------------------------------------------------------------------------------------'
+    local line='---------------------------------------------------------------------------'
 
     if [[ -n "${color}" ]]; then
         echo -e "$(:chalk-"${color}" "${line}")"
@@ -286,9 +294,9 @@ function :chalk-heading() {
     if ! :is-term-256-colors; then
         echo -e "${str}"
     elif :is-term-on-dark-bg; then
-        echo -e "\e[38;5;212m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;212m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     else
-        echo -e "\e[38;5;132m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;132m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     fi
 }
 
@@ -308,9 +316,9 @@ function :chalk-log() {
     if ! :is-term-256-colors; then
         echo -e "${str}"
     elif :is-term-on-dark-bg; then
-        echo -e "\e[38;5;255m\e[2m${str}\e[0m"
+        echo -e "\x01\e[38;5;255m\x02\x01\e[2m\x02${str}\x01\e[0m\x02"
     else
-        echo -e "\e[38;5;232m\e[2m${str}\e[0m"
+        echo -e "\x01\e[38;5;232m\x02\x01\e[2m\x02${str}\x01\e[0m\x02"
     fi
 }
 
@@ -328,9 +336,9 @@ function :chalk-info() {
     if ! :is-term-256-colors; then
         echo -e "${str}"
     elif :is-term-on-dark-bg; then
-        echo -e "\e[38;5;39m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;39m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     else
-        echo -e "\e[38;5;26m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;26m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     fi
 }
 
@@ -350,7 +358,7 @@ function :chalk-info-hilite() {
     if ! :is-term-256-colors; then
         echo -e "${str}"
     else
-        echo -e "\e[38;5;255m\e[48;5;26m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;255m\x02\x01\e[48;5;26m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     fi
 }
 
@@ -368,9 +376,9 @@ function :chalk-warning() {
     if ! :is-term-256-colors; then
         echo -e "${str}"
     elif :is-term-on-dark-bg; then
-        echo -e "\e[38;5;214m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;214m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     else
-        echo -e "\e[38;5;130m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;130m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     fi
 }
 
@@ -390,7 +398,7 @@ function :chalk-warning-hilite() {
     if ! :is-term-256-colors; then
         echo -e "${str}"
     else
-        echo -e "\e[38;5;255m\e[48;5;130m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;255m\x02\x01\e[48;5;130m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     fi
 }
 
@@ -408,9 +416,9 @@ function :chalk-danger() {
     if ! :is-term-256-colors; then
         echo -e "${str}"
     elif :is-term-on-dark-bg; then
-        echo -e "\e[38;5;203m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;203m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     else
-        echo -e "\e[38;5;124m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;124m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     fi
 }
 
@@ -430,7 +438,7 @@ function :chalk-danger-hilite() {
     if ! :is-term-256-colors; then
         echo -e "${str}"
     else
-        echo -e "\e[38;5;255m\e[48;5;124m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;255m\x02\x01\e[48;5;124m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     fi
 }
 
@@ -448,9 +456,9 @@ function :chalk-success() {
     if ! :is-term-256-colors; then
         echo -e "${str}"
     elif :is-term-on-dark-bg; then
-        echo -e "\e[38;5;41m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;41m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     else
-        echo -e "\e[38;5;28m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;28m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     fi
 }
 
@@ -470,6 +478,6 @@ function :chalk-success-hilite() {
     if ! :is-term-256-colors; then
         echo -e "${str}"
     else
-        echo -e "\e[38;5;255m\e[48;5;28m\e[1m${str}\e[0m"
+        echo -e "\x01\e[38;5;255m\x02\x01\e[48;5;28m\x02\x01\e[1m\x02${str}\x01\e[0m\x02"
     fi
 }
