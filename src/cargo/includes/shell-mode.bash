@@ -1,5 +1,35 @@
 #!/usr/bin/env bash
 ##
+# Utility include.
+##
+
+##
+# Note: All modes inherit strict mode.
+# Here we adjust and/or add to strict mode.
+##
+
+##
+# Sets default umask.
+##
+
+umask 0022 # 755 & 644.
+
+##
+# Sets window options.
+##
+
+shopt -s checkwinsize
+
+##
+# Sets history options.
+##
+
+HISTSIZE=1000
+HISTFILESIZE=2000
+HISTCONTROL=ignoreboth
+shopt -s histappend
+
+##
 # Bash `PS1` prompt via `PS1`.
 #
 # All globals have been prefixed with `p4t-` to scope them
@@ -44,5 +74,7 @@ function :___closure() {
     local directory="$(:chalk-black '[' && :chalk-blue "\w" && :chalk-black ']')" # Dynamic; based on current directory.
     local code_status="\`:p4t-code-status\`"                                      # Dynamic; based on current code status.
     local prompt_symbol="$(:chalk-blue "\\$")"                                    # Dynamic; changes to `%` when running as `root` user.
-    export PS1="${hostname} ${directory}\n${code_status} ${prompt_symbol} "       # Bash prompt; pulling all of the above together.
+
+    export PROMPT_COMMAND=''                                                # Not in use at this time; see <https://o5p.me/HyG7sF>.
+    export PS1="${hostname} ${directory}\n${code_status} ${prompt_symbol} " # Bash prompt; pulling all of the above together.
 } && :___closure && unset -f :___closure

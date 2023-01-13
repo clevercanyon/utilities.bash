@@ -70,7 +70,7 @@
 	status=$?
 	if [[ $status != 0 ]]; then
 	  if [[ $status == 1 ]]; then
-		echo "Try ':getopt --help' for more information." >&2
+		:chalk-danger "Try ':getopt --help' for more information." >&2
 		# Since this is the first parse, convert status 1 to 2
 		status=2
 	  fi
@@ -114,8 +114,8 @@
 			(csh|tcsh)
 			  flags=t$flags ;;
 			(*)
-			  echo ':getopt: unknown shell after -s or --shell argument' >&2
-			  echo "Try ':getopt --help' for more information." >&2
+			  :chalk-danger ':getopt: Unknown shell after -s or --shell argument.' >&2
+			  :chalk-danger "Try ':getopt --help' for more information." >&2
 			  return 2 ;;
 		  esac
 		  shift ;;
@@ -142,8 +142,8 @@
 	  # $short was declared but never set, not even to an empty string.
 	  # This implies the second form in the synopsis.
 	  if [[ $# == 0 ]]; then
-		echo ':getopt: missing optstring argument' >&2
-		echo "Try ':getopt --help' for more information." >&2
+		:chalk-danger ':getopt: Missing optstring argument.' >&2
+		:chalk-danger "Try ':getopt --help' for more information." >&2
 		return 2
 	  fi
 	  short=$1
@@ -217,10 +217,10 @@
 			opts=( "${opts[@]}" "$o" "${1#*=}" )
 		  elif [[ ,"$long", == *,"${o#--}",* ]]; then
 			if $alt_recycled; then o=${o#-}; fi
-			:_getopt_err "$name: option '$o' doesn't allow an argument"
+			:_getopt_err "$name: Option '$o' doesn't allow an argument."
 			error=1
 		  else
-			echo ":getopt: assertion failed (1)" >&2
+			:chalk-danger ":getopt: Assertion failed (1)." >&2
 			return 3
 		  fi
 		  alt_recycled=false
@@ -240,11 +240,11 @@
 			  opts=( "${opts[@]}" "$o" "$1" )
 			else
 			  if $alt_recycled; then o=${o#-}; fi
-			  :_getopt_err "$name: option '$o' requires an argument"
+			  :_getopt_err "$name: Option '$o' requires an argument."
 			  error=1
 			fi
 		  else
-			echo ":getopt: assertion failed (2)" >&2
+			:chalk-danger ":getopt: Assertion failed (2)." >&2
 			return 3
 		  fi
 		  alt_recycled=false
@@ -280,7 +280,7 @@
 				  # No match, fall through to single-character check.
 				  true ;;
 				(*)
-				  echo ":getopt: assertion failed (3)" >&2
+				  :chalk-danger ":getopt: Assertion failed (3)." >&2
 				  return 3 ;;
 			  esac
 			fi
@@ -300,7 +300,7 @@
 			  shift
 			  opts=( "${opts[@]}" "$o" "$1" )
 			else
-			  :_getopt_err "$name: option requires an argument -- '${o#-}'"
+			  :_getopt_err "$name: Option requires an argument -- '${o#-}'."
 			  error=1
 			fi
 		  elif [[ "$short" == *"${o#-}"* ]]; then
@@ -313,9 +313,9 @@
 			  # Alternative parsing mode! Report on the entire failed
 			  # option. GNU includes =value but we omit it for sanity with
 			  # very long values.
-			  :_getopt_err "$name: unrecognized option '${1%%=*}'"
+			  :_getopt_err "$name: Unrecognized option '${1%%=*}'."
 			else
-			  :_getopt_err "$name: invalid option -- '${o#-}'"
+			  :_getopt_err "$name: Invalid option -- '${o#-}'."
 			  if [[ ${#1} -gt 2 ]]; then
 				set -- "$o" "-${1:2}" "${@:2}"
 			  fi
@@ -394,16 +394,14 @@
 	case ${#matches[@]} in
 	  (0)
 		[[ $flags == *q* ]] || \
-		printf "$name: unrecognized option %s\\n" >&2 \
-		  "$(:_getopt_quote "$q")"
-		return 2 ;;
+			:chalk-danger "$name: Unrecognized option $(:_getopt_quote "$q")." >&2
+			return 2 ;;
 	  (1)
 		printf '%s' "${matches[0]}"; return 0 ;;
 	  (*)
 		[[ $flags == *q* ]] || \
-		printf "$name: option %s is ambiguous; possibilities: %s\\n" >&2 \
-		  "$(:_getopt_quote "$q")" "$(:_getopt_quote "${matches[@]}")"
-		return 1 ;;
+			:chalk-danger "$name: Option $(:_getopt_quote "$q") is ambiguous; possibilities: $(:_getopt_quote "${matches[@]}")." >&2
+			return 1 ;;
 	esac
   }
 
@@ -474,13 +472,13 @@
 
   :_getopt_version_check() {
 	if [[ -z $BASH_VERSION ]]; then
-	  echo ":getopt: unknown version of bash might not be compatible" >&2
+	  :chalk-danger ":getopt: Unknown version of bash might not be compatible." >&2
 	  return 1
 	fi
 
 	# This is a lexical comparison that should be sufficient forever.
 	if [[ $BASH_VERSION < 2.05b ]]; then
-	  echo ":getopt: bash $BASH_VERSION might not be compatible" >&2
+	  :chalk-danger ":getopt: Bash $BASH_VERSION might not be compatible." >&2
 	  return 1
 	fi
 

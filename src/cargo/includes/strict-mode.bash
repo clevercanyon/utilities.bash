@@ -4,6 +4,11 @@
 ##
 
 ##
+# Note: All modes inherit strict mode.
+# The settings below establish a baseline.
+##
+
+##
 # Sets up strict mode.
 # @see https://o5p.me/pnUV7g
 ##
@@ -11,6 +16,16 @@ set -o nounset
 set -o errexit
 set -o errtrace
 set -o pipefail
+
+##
+# Strict mode shell options.
+# Enables advanced globbing.
+##
+
+shopt -s extglob
+shopt -s dotglob
+shopt -s globstar
+shopt -s nullglob
 
 ##
 # Traps errors for debugging.
@@ -53,7 +68,7 @@ function :stack-trace() {
     diagnostic_lines+=('Exiting with status `'"${last_command_status_code}"'`.')
     diagnostic_report="$(IFS=$'\n' && echo "${diagnostic_lines[*]}")"
 
-    echo -e "\x01\e[90m\x02${diagnostic_report}\x01\e[0m\x02" >&2 # Lines from above.
+    echo -e "\x01\e[30m\x02${diagnostic_report}\x01\e[0m\x02" >&2 # Lines from above.
     exit "${last_command_status_code}"                            # Preserves exit status.
 
 } && trap ':stack-trace "${BASH_COMMAND}" "${?}"' ERR
