@@ -10,7 +10,7 @@
 ##
 function :___strict_mode_closure() {
     ##
-    # Options.
+    # Strict options.
     ##
 
     set -o nounset
@@ -18,15 +18,15 @@ function :___strict_mode_closure() {
     set -o errtrace
     set -o pipefail
 
+    trap ':stack-trace "${BASH_COMMAND}" "${?}"' ERR
+
+    ##
+    # Other baseline options.
+    ##
+
     shopt -s extglob
     shopt -s dotglob
     shopt -s globstar
     shopt -s nullglob
-
-    ##
-    # Error trap for debugging.
-    ##
-
-    trap ':stack-trace "${BASH_COMMAND}" "${?}"' ERR
 
 } && :___strict_mode_closure && unset -f :___strict_mode_closure

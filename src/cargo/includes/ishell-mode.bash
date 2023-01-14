@@ -11,13 +11,15 @@
 ##
 function :___ishell_mode_closure() {
     ##
-    # Partially reverts strict options.
+    # Mostly reverts strict options.
     # i.e., `+` indicates reverse/disable.
     ##
 
     set +o nounset
     set +o errexit
     set +o errtrace
+    set -o pipefail
+
     trap - ERR
 
     ##

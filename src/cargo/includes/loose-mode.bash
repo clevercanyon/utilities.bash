@@ -10,7 +10,7 @@
 ##
 function :___loose_mode_closure() {
     ##
-    # Partially reverts strict options.
+    # Reverts all strict options.
     # i.e., `+` indicates reverse/disable.
     ##
 
@@ -18,11 +18,6 @@ function :___loose_mode_closure() {
     set +o errexit
     set +o errtrace
     set +o pipefail
-
-    ##
-    # Removes strict mode error trap.
-    # We don't trap errors in loose mode.
-    ##
 
     trap - ERR
 
