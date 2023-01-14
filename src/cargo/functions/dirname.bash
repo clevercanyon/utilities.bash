@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2181
 ##
 # Utility function(s).
 ##
@@ -20,6 +21,7 @@ function :dirname() {
     :parse-opts ':dirname' '' "${long_opts}" opts -- "${@}"
 
     local dirname="${opts[_1]:-}"
+    local orig_dirname="${dirname}"
     local times="${opts[times]:-${opts[_2]:-1}}"
     local realpath="${opts[realpath]:-}"
 
@@ -27,7 +29,10 @@ function :dirname() {
         times=1 # Must be >= `1`.
     fi
     if [[ "${realpath}" == true ]]; then
-        dirname="$(realpath "${dirname}")"
+        dirname="$(realpath "${dirname}" 2> /dev/null)"
+        [[ "${?}" == 0 ]] || { # Guard in loose mode.
+            :chalk-danger ':dirname: Realpath failed on: `'"${orig_dirname}"'`.' && exit 1
+        }
     fi
     while [[ "${times}" -gt 0 ]]; do
         dirname="$(dirname "${dirname}")"

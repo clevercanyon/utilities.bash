@@ -48,8 +48,8 @@ function :parse-opts() {
     local _positional_index=-1 _opt_name _opt_var_name # Initializes variables used in loop below.
     local getopt_opts                                  # Initializes options parsed by `:getopt`.
 
-    getopt_opts="$(:getopt --name="${cmd_name}" --options "${short}" --longoptions "${long}" -- "${opts_list[@]}" || exit 1)"
-    [[ "${?}" == 0 ]] || exit 1 # Failed to parse options. Error output already provided by `:getopt`.
+    getopt_opts="$(:getopt --name="${cmd_name}" --options "${short}" --longoptions "${long}" -- "${opts_list[@]}")"
+    [[ "${?}" == 0 ]] || exit 1 # Guard in loose mode. Failed to parse options. Error output already provided by `:getopt`.
 
     eval set -- "${getopt_opts}" && while true; do
         if [[ -z "${1:-}" ]]; then
