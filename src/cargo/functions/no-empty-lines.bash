@@ -24,14 +24,14 @@ function :no-empty-lines() {
 
     if [[ -p /dev/stdin ]]; then
         if [[ "${no_comment_lines}" == true ]]; then
-            perl -0wpe 's/^\h*#.*\v*//umg' | perl -0wpe 's/^\h*\v*$//umg' | :trim
+            perl -0wpe 's/^\h*#.*\v*//umg' | perl -0wpe 's/^\h*\v*//umg' | :trim
         else
-            perl -0wpe 's/^\h*\v*$//umg' | :trim
+            perl -0wpe 's/^\h*\v*//umg' | :trim
         fi
     else
         if [[ "${no_comment_lines}" == true ]]; then
             str="$(echo -n "${str}" | perl -0wpe 's/^\h*#.*\v*//umg')"
         fi
-        echo -n "${str}" | perl -0wpe 's/^\h*\v*$//umg' | :trim
+        echo -n "${str}" | perl -0wpe 's/^\h*\v*//umg' | :trim
     fi
 }
