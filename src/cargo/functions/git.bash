@@ -120,16 +120,20 @@ function :git-current-tag() {
 ##
 # Gets current local git short SHA.
 #
-# @param string ${1} Pass `--short` to get short SHA.
+# @param boolean {--short} To get a short SHA.
 #
 # @output string Current local git short SHA.
 # @return int `0` (true) on success.
 ##
 function :git-current-sha() {
-    local sha=''         # Initialize.
-    local short="${1:-}" # Short SHA?
+    declare -A opts
+    local long_opts='short'
+    :parse-opts ':git-current-sha' '' "${long_opts}" opts -- "${@}"
 
-    if [[ "${short}" == '--short' ]]; then
+    local sha=''                   # Initialize.
+    local short="${opts[short]:-}" # Get short SHA?
+
+    if [[ "${short}" == true ]]; then
         sha="$(git rev-parse --short HEAD 2> /dev/null)"
     else
         sha="$(git rev-parse HEAD 2> /dev/null)"

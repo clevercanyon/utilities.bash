@@ -6,38 +6,29 @@
 ##
 # Trims a string or stdin.
 #
-# @param string ${1} String to trim.
-# @param string ${2} Chars to trim. Default is whitespace.
+# @param string ${1}      String to trim; or `/dev/stdin`.
+#                         `/dev/stdin`, when exists, takes precedence.
 #
-# Alternate signature for `/dev/stdin`, which obviates the need for first argument.
-#     @param string ${1} Chars to trim. Default is whitespace.
+# @param string {--chars} Additional chars to trim from string.
+#                         Whitespace is always trimmed, regardless.
 #
 # @output string Trimmed string.
 # @return int `0` (true) on success.
 ##
 function :trim() {
-    local str=''
-    local chars=''
+    declare -A opts
+    local long_opts='chars'
+    :parse-opts ':trim' '' "${long_opts}" opts -- "${@}"
+
+    local str="${opts[_1]:-}"
+    local chars="${opts[chars]:-}"
+
+    [[ -n "${chars}" ]] && chars="$(:esc-regexp "${chars}")"
+    chars+='\s' # Always trim whitespace, regardless.
 
     if [[ -p /dev/stdin ]]; then
-        # /dev/stdin as `str`
-        chars="${1:-}"
-
-        if [[ -n "${chars}" ]]; then
-            chars="$(:esc-regexp "${chars}")"
-            perl -0wpe 's/(?:^['"${chars}"']+|['"${chars}"']+$)//ug'
-        else
-            perl -0wpe 's/(?:^\s+|\s+$)//ug'
-        fi
+        perl -0wpe 's/(?:^['"${chars}"']+|['"${chars}"']+$)//ug'
     else
-        str="${1:-}"
-        chars="${2:-}"
-
-        if [[ -n "${chars}" ]]; then
-            chars="$(:esc-regexp "${chars}")"
-            echo -n "${str}" | perl -0wpe 's/(?:^['"${chars}"']+|['"${chars}"']+$)//ug'
-        else
-            echo -n "${str}" | perl -0wpe 's/(?:^\s+|\s+$)//ug'
-        fi
+        echo -n "${str}" | perl -0wpe 's/(?:^['"${chars}"']+|['"${chars}"']+$)//ug'
     fi
 }
