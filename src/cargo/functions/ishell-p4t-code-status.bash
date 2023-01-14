@@ -9,7 +9,7 @@
 # @output string Current code status for prompt.
 # @return int `0` (true) on success.
 ##
-function :p4t-code-status() {
+function :ishell-p4t-code-status() {
     if ! :in-git-repo; then
         return 0 # Not applicable.
     fi
