@@ -13,7 +13,7 @@ function :___ishell_dircolors_closure() {
     ##
 
     local __dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-    [[ -d "${__dirname}" ]] || { :chalk-danger 'Missing `__dirname`!' >&2 && exit 1; }
+    [[ -d "${__dirname}" ]] || { :chalk-danger 'Missing `__dirname`!' >&2 && return 1; }
 
     if [[ -n "${BREW_PREFIX:-}" && -x "${BREW_PREFIX}"/opt/coreutils/libexec/gnubin/dircolors ]]; then
         eval "$("${BREW_PREFIX}"/opt/coreutils/libexec/gnubin/dircolors "${__dirname}"/bash.dircolors)"

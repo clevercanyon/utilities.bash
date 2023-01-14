@@ -27,7 +27,6 @@
 #
 # @output string Errors are output to `stderr` by `:getopt` when there are problems.
 # @return int `0` (true) on success.
-# @exit   int `1` on any failure.
 ##
 function :parse-opts() {
     local cmd_name="${1:-}"
@@ -38,18 +37,18 @@ function :parse-opts() {
     declare -a opts_list=("${@:6}")
 
     if [[ -z "${cmd_name}" ]]; then
-        :chalk-danger ':parse-opts: Missing `cmd_name`.' >&2 && exit 1
+        :chalk-danger ':parse-opts: Missing `cmd_name`.' >&2 && return 1
     elif [[ -z "${opts_ref}" ]]; then
-        :chalk-danger ':parse-opts: Missing `opts_ref`.' >&2 && exit 1
+        :chalk-danger ':parse-opts: Missing `opts_ref`.' >&2 && return 1
     elif [[ "${opts_list_marker}" != -- ]]; then
-        :chalk-danger ':parse-opts: Missing `opts_list_marker`.' >&2 && exit 1
+        :chalk-danger ':parse-opts: Missing `opts_list_marker`.' >&2 && return 1
     fi
     declare -n opts_by_ref="${opts_ref}"               # Associative options array by reference.
     local _positional_index=-1 _opt_name _opt_var_name # Initializes variables used in loop below.
     local getopt_opts                                  # Initializes options parsed by `:getopt`.
 
     getopt_opts="$(:getopt --name="${cmd_name}" --options "${short}" --longoptions "${long}" -- "${opts_list[@]}")"
-    [[ "${?}" == 0 ]] || exit 1 # Guard in loose mode. Failed to parse options. Error output already provided by `:getopt`.
+    [[ "${?}" == 0 ]] || { :chalk-danger ':parse-opts: Failure.' >&2 && return 1; } # Guard in loose mode.
 
     eval set -- "${getopt_opts}" && while true; do
         if [[ -z "${1:-}" ]]; then

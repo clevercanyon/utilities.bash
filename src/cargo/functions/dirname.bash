@@ -29,9 +29,9 @@ function :dirname() {
         times=1 # Must be >= `1`.
     fi
     if [[ "${realpath}" == true ]]; then
-        dirname="$(realpath "${dirname}" 2> /dev/null)"
-        [[ "${?}" == 0 ]] || { # Guard in loose mode.
-            :chalk-danger ':dirname: Realpath failed on: `'"${orig_dirname}"'`.' && exit 1
+        dirname="$(realpath "${dirname}")"
+        [[ "${?}" == 0 ]] || {        # Guard in loose mode.
+            dirname="${orig_dirname}" # Reverts `realpath` operation.
         }
     fi
     while [[ "${times}" -gt 0 ]]; do

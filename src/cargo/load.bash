@@ -10,7 +10,7 @@ function :___load_closure() {
     local __dirname _function_file # Initialize.
 
     __dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-    [[ -d "${__dirname}" ]] || { echo 'Missing `__dirname`!' >&2 && exit 1; }
+    [[ -d "${__dirname}" ]] || { echo 'Missing `__dirname`!' >&2 && return 1; }
 
     . "${__dirname}"/includes/strict-mode.bash
 
