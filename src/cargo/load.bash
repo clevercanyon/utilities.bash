@@ -19,21 +19,21 @@ ___load_required_bash_version___='5.2.15'
 ##
 
 ___load_dirname___="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-[[ -d "${___load_dirname___}" ]] || { echo 'utilities.bash: Missing `___load_dirname___`!' >&2 && return 1; }
+[[ -d "${___load_dirname___}" ]] || { echo ':load.bash: Missing `___load_dirname___`!' >&2 && return 1; }
 
 ##
 # Checks bash version against minimum required version.
 ##
 
 [[ -n "${BASH_VERSION:-}" && "$(printf '%s\n' "${BASH_VERSION}" "${___load_required_bash_version___}" | sort -rV | head -n1)" == "${BASH_VERSION}" ]] || {
-    echo 'utilities.bash: Minimum required bash version is `'"${___load_required_bash_version___}"'`. Currently running `'"${BASH_VERSION:-}"'`.' >&2 && return 1
+    echo ':load.bash: Minimum required bash version is `'"${___load_required_bash_version___}"'`. Currently running `'"${BASH_VERSION:-}"'`.' >&2 && return 1
 }
 
 ##
 # Loads strict mode w/ default baseline.
 ##
 
-. "${___load_dirname___}"/includes/strict-mode.bash || { echo 'utilities.bash: Missing strict mode!' >&2 && return 1; }
+. "${___load_dirname___}"/includes/strict-mode.bash || { echo ':load.bash: Missing strict mode!' >&2 && return 1; }
 
 ##
 # Loads all utility functions.
