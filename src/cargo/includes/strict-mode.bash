@@ -10,7 +10,7 @@
 ##
 
 ##
-# Trap at top level global scope.
+# Trap at top level main context.
 # Top level required for proper handling.
 ##
 
@@ -67,7 +67,7 @@ trap ':strict-mode-stack-trace "${BASH_COMMAND}" "${?}"' ERR
 
 ##
 # Runs strict mode closure.
-# Not needing top level global scope.
+# Not needing top level main context.
 ##
 
 function :___strict_mode_closure___() {

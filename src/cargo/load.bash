@@ -4,7 +4,7 @@
 ##
 
 ##
-# Includes at top level global scope.
+# Includes at top level main context.
 # Top level required for proper loading.
 ##
 

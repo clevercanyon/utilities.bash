@@ -10,7 +10,7 @@
 ##
 
 ##
-# Untrap at top level global scope.
+# Untrap at top level main context.
 # Top level required for proper handling.
 ##
 
@@ -18,7 +18,7 @@ trap - ERR # Reverts.
 
 ##
 # Runs interactive shell mode closure.
-# Items not needing top level global scope.
+# Items not needing top level main context.
 ##
 
 function :___ishell_mode_closure___() {

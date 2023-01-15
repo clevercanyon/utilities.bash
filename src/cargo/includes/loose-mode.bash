@@ -10,7 +10,7 @@
 ##
 
 ##
-# Untrap at top level global scope.
+# Untrap at top level main context.
 # Top level required for proper handling.
 ##
 
@@ -18,7 +18,7 @@ trap - ERR # Reverts.
 
 ##
 # Runs loose mode closure.
-# Not needing top level global scope.
+# Not needing top level main context.
 ##
 
 function :___loose_mode_closure___() {
