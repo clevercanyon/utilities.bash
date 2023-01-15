@@ -9,6 +9,9 @@
 # Note: All modes inherit strict mode.
 # Here we adjust and/or add to strict mode.
 ##
+
+trap - ERR # In global scope.
+
 function :___ishell_mode_closure___() {
     ##
     # Mostly reverts strict options.
@@ -19,8 +22,6 @@ function :___ishell_mode_closure___() {
     set +o errexit
     set +o errtrace
     set -o pipefail
-
-    trap - ERR
 
     ##
     # Sets default umask.

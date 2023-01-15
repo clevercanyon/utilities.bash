@@ -15,7 +15,7 @@
 # @see https://o5p.me/8eGn9c
 ##
 function :stack-trace() {
-    set +o xtrace # One time only.
+    set +o xtrace # Don't trace this ↓.
 
     # Checks global set by this function.
     if [[ -n "${___stack_traced___:-}" &&

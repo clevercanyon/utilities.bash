@@ -13,9 +13,8 @@
 ##
 
 COLOR tty
-TERM *16*color*
-TERM *256*color*
-TERM *true*color*
+COLORTERM ?*
+TERM *color*
 
 ##
 # Base.
@@ -56,11 +55,11 @@ MISSING 31 # Missing file (broken inode).
 # Sockets.
 ##
 
-FIFO 01;33 # Named pipe.
-SOCK 01;33 # Domain socket.
-CHR 01;33 # Character device (stream).
-BLK 01;33 # Block device (random access).
-DOOR 01;33 # Server-client IPC for Solaris.
+FIFO 02;37 # Named pipe.
+SOCK 02;37 # Domain socket.
+CHR 02;37 # Character device (stream).
+BLK 02;37 # Block device (random access).
+DOOR 02;37 # Server-client IPC for Solaris.
 
 ##
 # Special permissions.
@@ -80,5 +79,4 @@ SETGID 03;35 # Group-inherited contents.
 # Bash completion prefixes.
 ##
 
-.readline-colored-completion-prefix 33
 *.readline-colored-completion-prefix 33
