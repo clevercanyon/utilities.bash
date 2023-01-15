@@ -18,8 +18,21 @@ function :___ishell_completion_closure() {
     bind 'set completion-ignore-case on'
     bind 'set completion-map-case on'
 
-    bind 'set show-all-if-ambiguous on'
+    bind 'set colored-stats on'
     bind 'set mark-symlinked-directories on'
+
+    bind 'set show-all-if-ambiguous on'
+    bind 'set completion-query-items 250'
+
+    bind 'set colored-completion-prefix on'
+    bind 'set menu-complete-display-prefix on'
+    bind 'set completion-prefix-display-length 75'
+
+    bind '"\e[B": history-search-forward'
+    bind '"\eOB": history-search-forward'
+
+    bind '"\e[A": history-search-backward'
+    bind '"\eOA": history-search-backward'
 
     BASH_COMPLETION_DIR=/dev/null        # Don't use full set of completions.
     BASH_COMPLETION_COMPAT_DIR=/dev/null # Don't use full set of completions.

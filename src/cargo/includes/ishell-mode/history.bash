@@ -16,8 +16,9 @@ function :___ishell_history_closure() {
 
     HISTSIZE=10000
     HISTFILESIZE=20000
+    HISTFILE=~/.bash_history
 
     HISTCONTROL=erasedups:ignoreboth
-    HISTIGNORE='exit:ls:bg:fg:history:clear'
+    HISTIGNORE='exit:ls:bg:fg:history:clear:reset'
 
 } && :___ishell_history_closure && unset -f :___ishell_history_closure

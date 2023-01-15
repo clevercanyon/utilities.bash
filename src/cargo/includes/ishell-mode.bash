@@ -34,4 +34,15 @@ function :___ishell_mode_closure() {
 
     shopt -s checkwinsize
 
+    # Locale options.
+
+    export LANG=en_US.UTF-8
+    export LC_ALL=en_US.UTF-8
+
+    # Maybe set brew prefix.
+
+    if :can-run brew; then
+        export BREW_PREFIX="$(brew --prefix)"
+    fi
+
 } && :___ishell_mode_closure && unset -f :___ishell_mode_closure
