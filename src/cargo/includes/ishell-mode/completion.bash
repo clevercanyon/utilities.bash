@@ -34,8 +34,9 @@ function :___ishell_completion_closure___() {
     bind '"\e[A": history-search-backward'
     bind '"\eOA": history-search-backward'
 
-    BASH_COMPLETION_DIR=/dev/null        # Don't use full set of completions.
-    BASH_COMPLETION_COMPAT_DIR=/dev/null # Don't use full set of completions.
+    BASH_COMPLETION_DIR=/dev/null                # Don't use full set of completions.
+    BASH_COMPLETION_COMPAT_DIR=/dev/null         # Don't use full set of completions.
+    BASH_COMPLETION_USER_FILE=~/.bash_completion # Use only completions pulled in by user.
 
     ##
     # Loads bash completion script.
@@ -44,11 +45,7 @@ function :___ishell_completion_closure___() {
     # Note: Use `~/.bash_completion` to customize further.
     # i.e., Completion script pulls in `~/.bash_completion` automatically.
 
-    if [[ -n "${BREW_PREFIX:-}" && -f "${BREW_PREFIX}"/etc/bash_completion ]]; then
-        . "${BREW_PREFIX}"/etc/bash_completion # Pulls in `~/.bash_completion`.
-
-    elif [[ -f /etc/bash_completion ]]; then
-        . /etc/bash_completion # Pulls in `~/.bash_completion`.
+    if [[ -n "${BREW_PREFIX:-}" && -f "${BREW_PREFIX}"/etc/profile.d/bash_completion.sh ]]; then
+        . "${BREW_PREFIX}"/etc/profile.d/bash_completion.sh
     fi
-
 } && :___ishell_completion_closure___

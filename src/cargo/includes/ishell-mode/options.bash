@@ -21,9 +21,9 @@ function :___ishell_options_closure___() {
     ##
 
     . "${__dirname}"/dircolors.bash || { :chalk-danger ':___ishell_options_closure___: Missing dircolors!' >&2 && return 1; }
-    . "${__dirname}"/history.bash || { :chalk-danger ':___ishell_options_closure___: Missing history!' >&2 && return 1; }
-    . "${__dirname}"/completion.bash || { :chalk-danger ':___ishell_options_closure___: Missing completion!' >&2 && return 1; }
     . "${__dirname}"/keychain.bash || { :chalk-danger ':___ishell_options_closure___: Missing keychain!' >&2 && return 1; }
     . "${__dirname}"/prompt.bash || { :chalk-danger ':___ishell_options_closure___: Missing prompt!' >&2 && return 1; }
+    . "${__dirname}"/history.bash || { :chalk-danger ':___ishell_options_closure___: Missing history!' >&2 && return 1; }
+    . "${__dirname}"/completion.bash || { :chalk-danger ':___ishell_options_closure___: Missing completion!' >&2 && return 1; }
 
 } && :___ishell_options_closure___

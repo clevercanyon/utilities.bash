@@ -45,7 +45,7 @@ function :___ishell_mode_closure___() {
     # Sources the environment vars include file.
     ##
 
-    . "${__dirname}"/includes/ishell-mode/env-vars.bash ||
+    . "${__dirname}"/ishell-mode/env-vars.bash ||
         { :chalk-danger ':___ishell_mode_closure___: Missing environment vars!' >&2 && return 1; }
 
 } && :___ishell_mode_closure___
