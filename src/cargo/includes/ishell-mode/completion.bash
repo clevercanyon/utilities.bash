@@ -34,9 +34,7 @@ function :___ishell_completion_closure___() {
     bind '"\e[A": history-search-backward'
     bind '"\eOA": history-search-backward'
 
-    BASH_COMPLETION_DIR=/dev/null                # Don't use full set of completions.
-    BASH_COMPLETION_COMPAT_DIR=/dev/null         # Don't use full set of completions.
-    BASH_COMPLETION_USER_FILE=~/.bash_completion # Use only completions pulled in by user.
+    BASH_COMPLETION_USER_FILE=~/.bash_completion # User customizations.
 
     ##
     # Loads bash completion script.
