@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2034
 ##
 # Utility include.
 ##
 
 ##
-# Dircolors for interactive shell mode.
+# Directory colors for interactive shell mode.
 ##
 
 function :___ishell_dircolors_closure___() {

@@ -9,17 +9,27 @@
 # Here we adjust and/or add to strict mode.
 ##
 
-trap - ERR # In global scope.
+##
+# Untrap at top level global scope.
+# Top level required for proper handling.
+##
+
+trap - ERR # Reverts.
+
+##
+# Runs loose mode closure.
+# Not needing top level global scope.
+##
 
 function :___loose_mode_closure___() {
     ##
     # Reverts all strict options.
-    # i.e., `+` indicates reverse/disable.
+    # i.e., `+` indicates revert/disable.
     ##
 
-    set +o nounset
-    set +o errexit
-    set +o errtrace
-    set +o pipefail
+    set +o nounset  # Reverts.
+    set +o errexit  # Reverts.
+    set +o errtrace # Reverts.
+    set +o pipefail # Reverts.
 
 } && :___loose_mode_closure___

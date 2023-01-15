@@ -4,43 +4,49 @@
 ##
 
 ##
-# Loads utilities.
+# Includes at top level global scope.
+# Top level required for proper loading.
 ##
 
-function :___load_closure___() {
-    ##
-    # Initializes local vars.
-    ##
+##
+# Minimum required version.
+##
 
-    local __dirname _function_file       # Initialize.
-    local required_bash_version='5.2.15' # Checked below.
+___load_required_bash_version___='5.2.15'
 
-    ##
-    # Gets this file’s directory.
-    ##
+##
+# Gets this file’s directory.
+##
 
-    __dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-    [[ -d "${__dirname}" ]] || { echo ':___load_closure___: Missing `__dirname`!' >&2 && return 1; }
+___load_dirname___="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+[[ -d "${___load_dirname___}" ]] || { echo 'utilities.bash: Missing `___load_dirname___`!' >&2 && return 1; }
 
-    ##
-    # Checks bash version against minimum required version.
-    ##
+##
+# Checks bash version against minimum required version.
+##
 
-    [[ -n "${BASH_VERSION:-}" && "$(printf '%s\n' "${BASH_VERSION}" "${required_bash_version}" | sort -rV | head -n1)" == "${BASH_VERSION}" ]] || {
-        echo ':___load_closure___: Minimum required bash version is `'"${required_bash_version}"'`. Currently running `'"${BASH_VERSION:-}"'`.' >&2 && return 1
-    }
+[[ -n "${BASH_VERSION:-}" && "$(printf '%s\n' "${BASH_VERSION}" "${___load_required_bash_version___}" | sort -rV | head -n1)" == "${BASH_VERSION}" ]] || {
+    echo 'utilities.bash: Minimum required bash version is `'"${___load_required_bash_version___}"'`. Currently running `'"${BASH_VERSION:-}"'`.' >&2 && return 1
+}
 
-    ##
-    # Loads strict mode w/ default baseline.
-    ##
+##
+# Loads strict mode w/ default baseline.
+##
 
-    . "${__dirname}"/includes/strict-mode.bash || { echo ':___load_closure___: Missing strict mode!' >&2 && return 1; }
+. "${___load_dirname___}"/includes/strict-mode.bash || { echo 'utilities.bash: Missing strict mode!' >&2 && return 1; }
 
-    ##
-    # Loads all utility functions.
-    ##
+##
+# Loads all utility functions.
+##
 
-    for _function_file in "${__dirname}"/functions/**.bash; do
-        [[ -f "${_function_file}" ]] && . "${_function_file}"
-    done
-} && :___load_closure___
+for ___load_function_file___ in "${___load_dirname___}"/functions/**.bash; do
+    [[ -f "${___load_function_file___}" ]] && . "${___load_function_file___}"
+done
+
+##
+# Housekeeping.
+##
+
+unset ___load_dirname___
+unset ___load_function_file___
+unset ___load_required_bash_version___

@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2034
 ##
 # Utility include.
 ##
 
 ##
-# Completion opts for interactive shell mode.
+# Completion options for interactive shell mode.
 ##
 
 function :___ishell_completion_closure___() {
@@ -34,6 +33,7 @@ function :___ishell_completion_closure___() {
     bind '"\e[A": history-search-backward'
     bind '"\eOA": history-search-backward'
 
+    # shellcheck disable=SC2034
     BASH_COMPLETION_USER_FILE=~/.bash_completion # User customizations.
 
     ##

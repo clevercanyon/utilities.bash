@@ -4,7 +4,7 @@
 ##
 
 ##
-# History opts for interactive shell mode.
+# History options for interactive shell mode.
 ##
 
 function :___ishell_history_closure___() {
