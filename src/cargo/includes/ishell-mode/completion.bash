@@ -7,10 +7,10 @@
 ##
 # Completion opts for interactive shell mode.
 ##
-function :___ishell_completion_closure() {
+
+function :___ishell_completion_closure___() {
     ##
     # Sets completion options.
-    # Use `~/.bash_completion` to customize.
     ##
 
     bind Space:magic-space
@@ -37,20 +37,18 @@ function :___ishell_completion_closure() {
     BASH_COMPLETION_DIR=/dev/null        # Don't use full set of completions.
     BASH_COMPLETION_COMPAT_DIR=/dev/null # Don't use full set of completions.
 
+    ##
+    # Loads bash completion script.
+    ##
+
+    # Note: Use `~/.bash_completion` to customize further.
+    # i.e., Completion script pulls in `~/.bash_completion` automatically.
+
     if [[ -n "${BREW_PREFIX:-}" && -f "${BREW_PREFIX}"/etc/bash_completion ]]; then
         . "${BREW_PREFIX}"/etc/bash_completion # Pulls in `~/.bash_completion`.
 
-    elif [[ -f /opt/homebrew/etc/bash_completion ]]; then
-        . /opt/homebrew/etc/bash_completion # Pulls in `~/.bash_completion`.
-
-    elif [[ -f /usr/local/etc/bash_completion ]]; then
-        . /usr/local/etc/bash_completion # Pulls in `~/.bash_completion`.
-
     elif [[ -f /etc/bash_completion ]]; then
         . /etc/bash_completion # Pulls in `~/.bash_completion`.
-
-    elif [[ -f ~/.bash_completion ]]; then
-        . ~/.bash_completion # Pulls in `~/.bash_completion`.
     fi
 
-} && :___ishell_completion_closure && unset -f :___ishell_completion_closure
+} && :___ishell_completion_closure___

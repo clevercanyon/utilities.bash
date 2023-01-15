@@ -6,7 +6,8 @@
 ##
 # History opts for interactive shell mode.
 ##
-function :___ishell_history_closure() {
+
+function :___ishell_history_closure___() {
     ##
     # Sets history options.
     ##
@@ -21,4 +22,4 @@ function :___ishell_history_closure() {
     HISTCONTROL=erasedups:ignoreboth
     HISTIGNORE='exit:ls:bg:fg:history:clear:reset'
 
-} && :___ishell_history_closure && unset -f :___ishell_history_closure
+} && :___ishell_history_closure___

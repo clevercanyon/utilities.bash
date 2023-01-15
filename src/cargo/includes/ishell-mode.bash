@@ -9,7 +9,7 @@
 # Note: All modes inherit strict mode.
 # Here we adjust and/or add to strict mode.
 ##
-function :___ishell_mode_closure() {
+function :___ishell_mode_closure___() {
     ##
     # Mostly reverts strict options.
     # i.e., `+` indicates reverse/disable.
@@ -34,15 +34,18 @@ function :___ishell_mode_closure() {
 
     shopt -s checkwinsize
 
-    # Locale options.
+    ##
+    # Gets this file’s directory.
+    ##
 
-    export LANG=en_US.UTF-8
-    export LC_ALL=en_US.UTF-8
+    local __dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+    [[ -d "${__dirname}" ]] || { :chalk-danger ':___ishell_mode_closure___: Missing `__dirname`!' >&2 && return 1; }
 
-    # Maybe set brew prefix.
+    ##
+    # Sources the environment vars include file.
+    ##
 
-    if :can-run brew; then
-        export BREW_PREFIX="$(brew --prefix)"
-    fi
+    . "${__dirname}"/includes/ishell-mode/env-vars.bash ||
+        { :chalk-danger ':___ishell_mode_closure___: Missing environment vars!' >&2 && return 1; }
 
-} && :___ishell_mode_closure && unset -f :___ishell_mode_closure
+} && :___ishell_mode_closure___

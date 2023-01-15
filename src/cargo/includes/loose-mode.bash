@@ -8,7 +8,7 @@
 # Note: All modes inherit strict mode.
 # Here we adjust and/or add to strict mode.
 ##
-function :___loose_mode_closure() {
+function :___loose_mode_closure___() {
     ##
     # Reverts all strict options.
     # i.e., `+` indicates reverse/disable.
@@ -21,4 +21,4 @@ function :___loose_mode_closure() {
 
     trap - ERR
 
-} && :___loose_mode_closure && unset -f :___loose_mode_closure
+} && :___loose_mode_closure___

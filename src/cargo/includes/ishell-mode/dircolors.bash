@@ -7,25 +7,26 @@
 ##
 # Dircolors for interactive shell mode.
 ##
-function :___ishell_dircolors_closure() {
+
+function :___ishell_dircolors_closure___() {
     ##
-    # Exports custom `LS_COLORS`.
+    # Gets this file’s directory.
     ##
 
     local __dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-    [[ -d "${__dirname}" ]] || { :chalk-danger 'Missing `__dirname`!' >&2 && return 1; }
+    [[ -d "${__dirname}" ]] || { :chalk-danger ':___ishell_dircolors_closure___: Missing `__dirname`!' >&2 && return 1; }
+
+    ##
+    # Exports custom `LS_COLORS` environment var.
+    ##
 
     if [[ -n "${BREW_PREFIX:-}" && -x "${BREW_PREFIX}"/opt/coreutils/libexec/gnubin/dircolors ]]; then
-        eval "$("${BREW_PREFIX}"/opt/coreutils/libexec/gnubin/dircolors "${__dirname}"/bash.dircolors)"
+        eval "$("${BREW_PREFIX}"/opt/coreutils/libexec/gnubin/dircolors "${__dirname}"/bash.dircolors)" ||
+            { :chalk-danger ':___ishell_dircolors_closure___: Missing dircolors!' >&2 && return 1; }
 
-    elif [[ -x /opt/homebrew/opt/coreutils/libexec/gnubin/dircolors ]]; then
-        eval "$(/opt/homebrew/opt/coreutils/libexec/gnubin/dircolors "${__dirname}"/bash.dircolors)"
-
-    elif [[ -x /usr/local/opt/coreutils/libexec/gnubin/dircolors ]]; then
-        eval "$(/usr/local/opt/coreutils/libexec/gnubin/dircolors "${__dirname}"/bash.dircolors)"
-
-    elif can-run dircolors; then
-        eval "$(dircolors "${__dirname}"/bash.dircolors)"
+    elif :can-run dircolors; then
+        eval "$(dircolors "${__dirname}"/bash.dircolors)" ||
+            { :chalk-danger ':___ishell_dircolors_closure___: Missing dircolors!' >&2 && return 1; }
     fi
 
-} && :___ishell_dircolors_closure && unset -f :___ishell_dircolors_closure
+} && :___ishell_dircolors_closure___

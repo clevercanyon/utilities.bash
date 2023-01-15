@@ -8,7 +8,7 @@
 # Note: All modes inherit strict mode.
 # The settings below establish a baseline.
 ##
-function :___strict_mode_closure() {
+function :___strict_mode_closure___() {
     ##
     # Strict options.
     ##
@@ -29,4 +29,4 @@ function :___strict_mode_closure() {
     shopt -s globstar
     shopt -s nullglob
 
-} && :___strict_mode_closure && unset -f :___strict_mode_closure
+} && :___strict_mode_closure___
