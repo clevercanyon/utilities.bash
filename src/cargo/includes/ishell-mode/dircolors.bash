@@ -30,7 +30,6 @@ function :___ishell_dircolors_closure___() {
 
     ##
     # Exports `EXA_COLORS` environment var.
-    # @see https://o5p.me/jrBRbZ
     ##
 
     export EXA_COLORS="$(cat "${__dirname}"/bash.exacolors |

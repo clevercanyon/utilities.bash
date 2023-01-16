@@ -20,6 +20,6 @@ function :___ishell_history_closure___() {
     HISTFILE=~/.bash_history
 
     HISTCONTROL=erasedups:ignoreboth
-    HISTIGNORE='exit:ls:bg:fg:history:clear:reset'
+    HISTIGNORE='passwd:cd:up:back:home:ls:lsa:lso:history:clear:reset:exit'
 
 } && :___ishell_history_closure___
