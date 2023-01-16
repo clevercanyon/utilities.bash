@@ -1,0 +1,60 @@
+# #
+# Utility include.
+# #
+
+# #
+# Sets exa colors.
+# @see https://o5p.me/jrBRbZ
+# #
+
+fi = '00' # Normal file.
+pi = '02;37' # Named pipe.
+cd = '02;37' # Character device.
+di = '34' # Regular directory.
+so = '33' # Domain socket.
+ln = 'target' # Symlink.
+ex = '32' # Executable file.
+bd = '02;37' # Block device.
+or = '31' # Broken symlink.
+bO = '31' # Broken link path.
+
+ur = '02;37' # User +r bit.
+uw = '02;37' # User +w bit.
+ux = '02;37' # User +x bit (files).
+ue = '02;37' # User +x bit (file types).
+gr = '02;37' # Group +r bit.
+gw = '02;37' # Group +w bit.
+gx = '02;37' # Group +x bit.
+tr = '02;37' # Others +r bit.
+tw = '02;37' # Others +w bit.
+tx = '02;37' # Others +x bit.
+su = '02;37' # Higher bits (files).
+sf = '02;37' # Higher bits (other types).
+xa = '02;37' # Extended attribute marker.
+
+sn = '00' # Size numbers.
+sb = '00' # Size unit.
+df = '00' # Major device ID.
+ds = '00' # Minor device ID.
+
+uu = '00' # A user that’s you.
+un = '00' # A user that’s not you.
+gu = '00' # A group with you in it.
+gn = '00' # A group without you in it.
+
+lc = '00' # Number of links.
+lm = '00' # A multi-link file.
+
+ga = '00' # Git: new file.
+gm = '00' # Git: modified file.
+gd = '00' # Git: deleted file.
+gv = '00' # Git: renamed file.
+gt = '00' # Git: type change.
+
+xx = '00' # Punctuation.
+da = '00' # Timestamp.
+in = '00' # File inode.
+bl = '00' # Number of blocks.
+hd = '00' # Table header row.
+lp = '00' # Symlink path.
+cc = '00' # Control character.

@@ -28,4 +28,12 @@ function :___ishell_dircolors_closure___() {
             { :chalk-danger ':___ishell_dircolors_closure___: Missing dircolors!' >&2 && return 1; }
     fi
 
+    ##
+    # Exports `EXA_COLORS` environment var.
+    # @see https://o5p.me/jrBRbZ
+    ##
+
+    export EXA_COLORS="$(cat "${__dirname}"/bash.exacolors |
+        :no-empty-lines --no-comment-lines | perl -0wpe 's/[\h'"'"']//ug' | perl -0wpe 's/\v/:/ug')"
+
 } && :___ishell_dircolors_closure___
