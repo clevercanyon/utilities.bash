@@ -4,33 +4,15 @@
 ##
 
 ##
-# Interactive shell mode.
-# Note: All modes inherit strict mode.
-# Here we adjust and/or add to strict mode.
-##
-
-##
-# Untrap at top level main context.
-# Top level required for proper handling.
-##
-
-trap - ERR # Reverts.
-
-##
-# Runs interactive shell mode closure.
-# Items not needing top level main context.
+# Loads interactive shell mode.
 ##
 
 function :___ishell_mode_closure___() {
     ##
-    # Mostly reverts strict options.
-    # i.e., `+` indicates revert/disable.
+    # Sets options.
     ##
 
-    set +o nounset  # Reverts.
-    set +o errexit  # Reverts.
-    set +o errtrace # Reverts.
-    set -o pipefail # Keeps.
+    set -o pipefail
 
     ##
     # Sets default umask.

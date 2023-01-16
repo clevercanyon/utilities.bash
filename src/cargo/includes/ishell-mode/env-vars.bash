@@ -21,8 +21,10 @@ function :___ishell_env_vars_closure___() {
 
     if [[ -x /opt/homebrew/bin/brew ]]; then
         export BREW_PREFIX=/opt/homebrew
+
     elif [[ -x /usr/local/bin/brew ]]; then
         export BREW_PREFIX=/usr/local
+
     elif :can-run brew; then
         export BREW_PREFIX="$(brew --prefix)"
     fi

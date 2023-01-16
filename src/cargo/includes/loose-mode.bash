@@ -4,32 +4,14 @@
 ##
 
 ##
-# Loose mode.
-# Note: All modes inherit strict mode.
-# Here we adjust and/or add to strict mode.
-##
-
-##
-# Untrap at top level main context.
-# Top level required for proper handling.
-##
-
-trap - ERR # Reverts.
-
-##
-# Runs loose mode closure.
-# Not needing top level main context.
+# Loads loose mode.
 ##
 
 function :___loose_mode_closure___() {
     ##
-    # Reverts all strict options.
-    # i.e., `+` indicates revert/disable.
+    # Sets options.
     ##
 
-    set +o nounset  # Reverts.
-    set +o errexit  # Reverts.
-    set +o errtrace # Reverts.
-    set +o pipefail # Reverts.
+    return 0 # Nothing to do at this time.
 
 } && :___loose_mode_closure___

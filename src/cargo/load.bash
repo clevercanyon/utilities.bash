@@ -4,49 +4,68 @@
 ##
 
 ##
-# Includes at top level main context.
-# Top level required for proper loading.
+# Loads utilities.
 ##
 
-##
-# Minimum required version.
-##
+function :___load_closure___() {
+    ##
+    # Minimum required version.
+    ##
 
-___load_required_bash_version___='5.2.15'
+    local required_bash_version='5.2.15'
 
-##
-# Gets this file’s directory.
-##
+    ##
+    # Checks bash version against minimum required version.
+    ##
 
-___load_dirname___="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-[[ -d "${___load_dirname___}" ]] || { echo ':load.bash: Missing `___load_dirname___`!' >&2 && return 1; }
+    local v1="${BASH_VERSION:-}" v2="${required_bash_version}"
+    [[ -n "${v1}" && "$(printf '%s\n' "${v1}" "${v2}" | sort -rV | head -n1)" == "${v1}" ]] || {
+        echo ':___load_closure___: Minimum required bash version is `'"${required_bash_version}"'`.' >&2
+        echo ':___load_closure___: Currently running bash version `'"${BASH_VERSION:-}"'`.' >&2 && return 1
+    }
 
-##
-# Checks bash version against minimum required version.
-##
+    ##
+    # Gets this file’s directory.
+    ##
 
-[[ -n "${BASH_VERSION:-}" && "$(printf '%s\n' "${BASH_VERSION}" "${___load_required_bash_version___}" | sort -rV | head -n1)" == "${BASH_VERSION}" ]] || {
-    echo ':load.bash: Minimum required bash version is `'"${___load_required_bash_version___}"'`. Currently running `'"${BASH_VERSION:-}"'`.' >&2 && return 1
-}
+    local __dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+    [[ -d "${__dirname}" ]] || { echo ':___load_closure___: Missing `__dirname`!' >&2 && return 1; }
 
-##
-# Loads strict mode w/ default baseline.
-##
+    ##
+    # Loads baseline options/utilities.
+    ##
 
-. "${___load_dirname___}"/includes/strict-mode.bash || { echo ':load.bash: Missing strict mode!' >&2 && return 1; }
+    local mode="${C10N_UTILITIES_MODE:-strict}" # Default is strict mode.
+    . "${__dirname}"/includes/baseline.bash || { echo ':___load_closure___: Missing baseline!' >&2 && return 1; }
 
-##
-# Loads all utility functions.
-##
+    ##
+    # Loads strict mode when applicable.
+    ##
 
-for ___load_function_file___ in "${___load_dirname___}"/functions/**.bash; do
-    [[ -f "${___load_function_file___}" ]] && . "${___load_function_file___}"
-done
+    if [[ "${mode}" == strict ]]; then
+        . "${__dirname}"/includes/strict-mode.bash ||
+            { :chalk-danger ':___load_closure___: Missing strict mode!' >&2 && return 1; }
 
-##
-# Housekeeping.
-##
+    ##
+    # Loads loose mode when applicable.
+    ##
 
-unset ___load_dirname___
-unset ___load_function_file___
-unset ___load_required_bash_version___
+    elif [[ "${mode}" == loose ]]; then
+        . "${__dirname}"/includes/loose-mode.bash ||
+            { :chalk-danger ':___load_closure___: Missing loose mode!' >&2 && return 1; }
+
+    ##
+    # Loads interactive shell mode when applicable.
+    ##
+
+    elif [[ "${mode}" == ishell ]]; then
+        . "${__dirname}"/includes/ishell-mode.bash ||
+            { :chalk-danger ':___load_closure___: Missing ishell mode!' >&2 && return 1; }
+
+    ##
+    # Warns about an invalid mode when applicable.
+    ##
+    else
+        :chalk-danger ':___load_closure___: Invalid mode: `'"${mode}"'`!' >&2 && return 1
+    fi
+} && :___load_closure___
