@@ -49,17 +49,17 @@ STICKY 03;34 # Owner-exclusive directory control.
 SYMLINK target # Valid symbolic link.
 MULTIHARDLINK target # Valid hardlink.
 ORPHAN 31 # Symbolic link to missing file.
-MISSING 31 # Missing file (broken inode).
+MISSING 02;35 # Broken inode | readline command.
 
 ##
 # Sockets.
 ##
 
 FIFO 02;37 # Named pipe.
-SOCK 02;37 # Domain socket.
 CHR 02;37 # Character device (stream).
 BLK 02;37 # Block device (random access).
 DOOR 02;37 # Server-client IPC for Solaris.
+SOCK 33 # Domain socket | readline prefix hilite.
 
 ##
 # Special permissions.
@@ -74,9 +74,3 @@ SETGID 03;35 # Group-inherited contents.
 #   A file, when executed, will run as the group that owns the file.
 # - When a directory has `setgid` it will cause all files that are created in that directory
 #   to be owned by the group of the directory as opposed to the group of the owner.
-
-##
-# Bash completion prefixes.
-##
-
-*.readline-colored-completion-prefix 33
