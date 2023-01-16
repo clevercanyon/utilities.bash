@@ -4,8 +4,7 @@
 
 ##
 # Sets directory colors.
-# @see https://o5p.me/xhq801
-# @see https://o5p.me/MwWkqU
+# @see https://o5p.me/jrBRbZ
 ##
 
 ##
@@ -21,23 +20,23 @@ TERM *color*
 ##
 
 RESET 0 # Color reset.
-NORMAL 00 # Normal text.
+NORMAL 39 # Normal text.
 
 ##
 # Files.
 ##
 
-FILE 00 # Regular file.
-EXEC 32 # Executable file.
-SETUID 03;32 # User-inherited contents.
+FILE 39 # Regular file.
+EXEC 38;5;113 # Executable file.
+SETUID 03;38;5;113 # User-inherited contents.
 # Allows a user to execute a file as the owner of that file.
 
 ##
 # Directories.
 ##
 
-DIR 34 # Regular directory.
-STICKY 03;34 # Owner-exclusive directory control.
+DIR 38;5;32 # Regular directory.
+STICKY 03;38;5;32 # Owner-exclusive directory control.
 # When set on a directory, files can only be removed by the owner.
 # For example, the `/tmp` directory can be written to by any user,
 # but other users cannot delete the files of others.
@@ -46,30 +45,30 @@ STICKY 03;34 # Owner-exclusive directory control.
 # Links.
 ##
 
-SYMLINK target # Valid symbolic link.
-MULTIHARDLINK target # Valid hardlink.
-ORPHAN 31 # Symbolic link to missing file.
-MISSING 02;35 # Broken inode | readline command.
+SYMLINK 04;39 # Valid symbolic link.
+MULTIHARDLINK 04;39 # Valid hardlink.
+ORPHAN 04;09;31 # Symbolic link missing.
+MISSING 38;5;130 # Broken inode | readline command.
 
 ##
 # Sockets.
 ##
 
-FIFO 02;37 # Named pipe.
-CHR 02;37 # Character device (stream).
-BLK 02;37 # Block device (random access).
-DOOR 02;37 # Server-client IPC for Solaris.
-SOCK 33 # Domain socket | readline prefix hilite.
+FIFO 38;5;243 # Named pipe.
+CHR 38;5;243 # Character device (stream).
+BLK 38;5;243 # Block device (random access).
+DOOR 38;5;243 # Server-client IPC for Solaris.
+SOCK 38;5;229 # Domain socket | readline prefix hilite.
 
 ##
 # Special permissions.
 ##
 
-CAPABILITY 03;35 # Partial root privileges.
-OTHER_WRITABLE 03;35 # Publicly modifiable.
-STICKY_OTHER_WRITABLE 03;35 # Publicly modifiable but sticky-bit safe.
+CAPABILITY 03;38;5;132 # Partial root privileges.
+OTHER_WRITABLE 03;38;5;132 # Publicly modifiable.
+STICKY_OTHER_WRITABLE 03;38;5;132 # Publicly modifiable but sticky-bit safe.
 
-SETGID 03;35 # Group-inherited contents.
+SETGID 03;38;5;132 # Group-inherited contents.
 # - When `setgid` is used on files, it’s similar to the `setuid` permission.
 #   A file, when executed, will run as the group that owns the file.
 # - When a directory has `setgid` it will cause all files that are created in that directory

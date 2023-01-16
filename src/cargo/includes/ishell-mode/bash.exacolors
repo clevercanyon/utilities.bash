@@ -7,54 +7,89 @@
 # @see https://o5p.me/jrBRbZ
 # #
 
-fi = '00' # Normal file.
-pi = '02;37' # Named pipe.
-cd = '02;37' # Character device.
-di = '34' # Regular directory.
-so = '33' # Domain socket.
-ln = 'target' # Symlink.
-ex = '32' # Executable file.
-bd = '02;37' # Block device.
-or = '31' # Broken symlink.
-bO = '31' # Broken link path.
+# #
+# Base.
+# #
 
-ur = '02;37' # User +r bit.
-uw = '02;37' # User +w bit.
-ux = '02;37' # User +x bit (files).
-ue = '02;37' # User +x bit (file types).
-gr = '02;37' # Group +r bit.
-gw = '02;37' # Group +w bit.
-gx = '02;37' # Group +x bit.
-tr = '02;37' # Others +r bit.
-tw = '02;37' # Others +w bit.
-tx = '02;37' # Others +x bit.
-su = '02;37' # Higher bits (files).
-sf = '02;37' # Higher bits (other types).
-xa = '02;37' # Extended attribute marker.
+*.* = '39' # Default.
 
-sn = '00' # Size numbers.
-sb = '00' # Size unit.
-df = '00' # Major device ID.
-ds = '00' # Minor device ID.
+# #
+# Files.
+# #
 
-uu = '00' # A user that’s you.
-un = '00' # A user that’s not you.
-gu = '00' # A group with you in it.
-gn = '00' # A group without you in it.
+fi = '39' # Normal file.
+ex = '38;5;113' # Executable file.
 
-lc = '00' # Number of links.
-lm = '00' # A multi-link file.
+# #
+# Directories.
+# #
 
-ga = '00' # Git: new file.
-gm = '00' # Git: modified file.
-gd = '00' # Git: deleted file.
-gv = '00' # Git: renamed file.
-gt = '00' # Git: type change.
+di = '38;5;32' # Regular directory.
 
-xx = '00' # Punctuation.
-da = '00' # Timestamp.
-in = '00' # File inode.
-bl = '00' # Number of blocks.
-hd = '00' # Table header row.
-lp = '00' # Symlink path.
-cc = '00' # Control character.
+# #
+# Links.
+# #
+
+ln = '04;39' # Symlink.
+or = '04;09;31' # Broken symlink.
+bO = '04;09;31' # Broken link path.
+
+# #
+# Sockets.
+# #
+
+pi = '38;5;243' # Named pipe.
+cd = '38;5;243' # Character device.
+bd = '38;5;243' # Block device.
+so = '38;5;229' # Domain socket.
+
+# #
+# User interface.
+# #
+
+hd = '04;38;5;137' # Table headers.
+
+in = '03;38;5;243' # File inode.
+
+ur = '38;5;243' # User +r bit.
+uw = '38;5;243' # User +w bit.
+ux = '38;5;243' # User +x bit (files).
+ue = '38;5;243' # User +x bit (file types).
+gr = '38;5;243' # Group +r bit.
+gw = '38;5;243' # Group +w bit.
+gx = '38;5;243' # Group +x bit.
+tr = '38;5;243' # Others +r bit.
+tw = '38;5;243' # Others +w bit.
+tx = '38;5;243' # Others +x bit.
+su = '38;5;243' # Higher bits (files).
+sf = '38;5;243' # Higher bits (other types).
+xa = '38;5;243' # Extended attribute marker.
+
+lc = '38;5;73' # Number of links.
+lm = '38;5;73' # A multi-link file.
+
+sn = '38;5;229' # Size numbers.
+sb = '38;5;229' # Size unit.
+
+bl = '38;5;180' # Number of blocks.
+
+uu = '38;5;122' # A user that’s you.
+un = '03;38;5;122' # A user that’s not you.
+
+gu = '38;5;73' # A group with you in it.
+gn = '03;38;5;73' # A group without you in it.
+
+da = '38;5;60' # Timestamp.
+
+df = '02;38;5;229' # Major device ID.
+ds = '02;38;5;229' # Minor device ID.
+
+ga = '38;5;49' # Git: new file.
+gm = '38;5;137' # Git: modified file.
+gd = '38;5;131' # Git: deleted file.
+gv = '38;5;137' # Git: renamed file.
+gt = '38;5;137' # Git: type change.
+
+xx = '30' # Punctuation.
+lp = '30' # Symlink path.
+cc = '30' # Control character.
