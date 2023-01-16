@@ -24,32 +24,32 @@ function :version-compare() {
         return # Returns last command exist status.
     fi
     case "${op}" in
-        '==' | '=' | eq)
+        "'=='" | "'='" | "'eq'")
             [[ "${v1}" == "${v2}" ]]
             return
             ;;
-        '!=' | '<>' | ne)
+        "'!='" | "'<>'" | "'ne'")
             [[ "${v1}" != "${v2}" ]]
             return
             ;;
-        '>=' | ge)
+        "'>='" | "'ge'")
             [[ "$(printf '%s\n' "${v1}" "${v2}" | sort -rV | head -n1)" == "${v1}" ]]
             return
             ;;
-        '>' | gt)
+        "'>'" | "'gt'")
             [[ "${v1}" != "${v2}" && "$(printf '%s\n' "${v1}" "${v2}" | sort -rV | head -n1)" == "${v1}" ]]
             return
             ;;
-        '<=' | le)
+        "'<='" | "'le'")
             [[ "$(printf '%s\n' "${v1}" "${v2}" | sort -rV | head -n1)" == "${v2}" ]]
             return
             ;;
-        '<' | lt)
+        "'<'" | "'lt'")
             [[ "${v1}" != "${v2}" && "$(printf '%s\n' "${v1}" "${v2}" | sort -rV | head -n1)" == "${v2}" ]]
             return
             ;;
         *)
-            :chalk-danger ':version-compare: Invalid comparsion operator.' >&2
+            :chalk-danger ':version-compare: Invalid comparsion operator: `'"${op}"'`.' >&2
             return 1 # False.
             ;;
     esac
