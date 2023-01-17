@@ -17,7 +17,7 @@ function :___ishell_history_closure___() {
 
     HISTSIZE=10000
     HISTFILESIZE=20000
-    HISTFILE=~/.bash_history
+    HISTFILE=~/.history
 
     HISTCONTROL=erasedups:ignoreboth
     HISTIGNORE='passwd:cd:up:back:home:ls:lsa:lso:history:clear:reset:exit'

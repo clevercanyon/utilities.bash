@@ -14,11 +14,11 @@ function :___ishell_completion_closure___() {
     ##
 
     # shellcheck disable=SC2034
-    BASH_COMPLETION_USER_FILE=~/.bash_completion
+    BASH_COMPLETION_USER_FILE=~/.completion
 
     ##
     # Loads bash completion script.
-    # Use `~/.bash_completion` & `~/.inputrc` to customize further.
+    # Use `~/.completion` & `~/.inputrc` to customize further.
     ##
 
     if [[ -n "${BREW_PREFIX:-}" && -f "${BREW_PREFIX}"/etc/profile.d/bash_completion.sh ]]; then
