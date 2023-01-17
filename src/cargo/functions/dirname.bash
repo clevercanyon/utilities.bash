@@ -36,7 +36,7 @@ function :dirname() {
     fi
     while [[ "${times}" -gt 0 ]]; do
         dirname="$(dirname "${dirname}")"
-        ((times--)) || true
+        ((times--)) || :
     done
     echo "${dirname}"
 }

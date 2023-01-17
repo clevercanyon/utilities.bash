@@ -52,17 +52,17 @@ function :parse-opts() {
 
     eval set -- "${getopt_opts}" && while true; do
         if [[ -z "${1:-}" ]]; then
-            shift 1 || true
+            shift 1 || :
             break # End of loop.
 
         elif [[ "${1}" == -- && "${_positional_index}" == -1 ]]; then
             _positional_index=0
-            shift 1 || true
+            shift 1 || :
 
         elif [[ "${_positional_index}" -ge 0 ]]; then
-            ((_positional_index++)) || true
+            ((_positional_index++)) || :
             opts_by_ref[_"${_positional_index}"]="${1}"
-            shift 1 || true
+            shift 1 || :
 
         else
             _opt_name="$(echo -n "${1}" | perl -0wpe 's/^-+//u')"
@@ -70,14 +70,14 @@ function :parse-opts() {
 
             if [[ "${#_opt_name}" -eq 1 && "${short}" =~ "${_opt_name}": ]]; then
                 opts_by_ref["${_opt_var_name}"]="${2:-}"
-                shift 2 || true
+                shift 2 || :
 
             elif [[ "${#_opt_name}" -gt 1 && "${long}" =~ "${_opt_name}": ]]; then
                 opts_by_ref["${_opt_var_name}"]="${2:-}"
-                shift 2 || true
+                shift 2 || :
             else
                 opts_by_ref["${_opt_var_name}"]=true
-                shift 1 || true
+                shift 1 || :
             fi
         fi
     done
