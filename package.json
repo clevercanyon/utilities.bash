@@ -3,7 +3,7 @@
 	"publishConfig": {
 		"access": "restricted"
 	},
-	"version": "1.0.78",
+	"version": "1.0.79",
 	"license": "GPL-3.0-or-later",
 	"name": "@clevercanyon/utilities.bash",
 	"description": "Another great project by Clever Canyon.",
@@ -45,7 +45,7 @@
 	"optionalDependencies": {},
 	"bundleDependencies": [],
 	"devDependencies": {
-		"@clevercanyon/skeleton-dev-deps": "^1.0.99"
+		"@clevercanyon/skeleton-dev-deps": "^1.0.100"
 	},
 	"overrides": {},
 	"workspaces": [],
