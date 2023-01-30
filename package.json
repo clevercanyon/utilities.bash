@@ -3,10 +3,10 @@
 	"publishConfig": {
 		"access": "restricted"
 	},
-	"version": "1.0.81",
+	"version": "1.0.82",
 	"license": "GPL-3.0-or-later",
 	"name": "@clevercanyon/utilities.bash",
-	"description": "Another great project by Clever Canyon.",
+	"description": "Utilities for apps running in a Bash environment.",
 	"repository": "https://github.com/clevercanyon/utilities.bash",
 	"homepage": "https://github.com/clevercanyon/utilities.bash#readme",
 	"bugs": "https://github.com/clevercanyon/utilities.bash/issues",

@@ -1,3 +1,3 @@
 # @clevercanyon/utilities.bash
 
-Another great project by Clever Canyon.
+Utilities for apps running in a Bash environment.
