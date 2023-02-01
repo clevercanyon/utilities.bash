@@ -3,7 +3,7 @@
 	"publishConfig": {
 		"access": "restricted"
 	},
-	"version": "1.0.83",
+	"version": "1.0.84",
 	"license": "GPL-3.0-or-later",
 	"name": "@clevercanyon/utilities.bash",
 	"description": "Utilities for apps running in a Bash environment.",
@@ -45,7 +45,7 @@
 	"optionalDependencies": {},
 	"bundleDependencies": [],
 	"devDependencies": {
-		"@clevercanyon/skeleton-dev-deps": "^1.0.103"
+		"@clevercanyon/skeleton-dev-deps": "^1.0.109"
 	},
 	"overrides": {},
 	"workspaces": [],
