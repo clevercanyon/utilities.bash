@@ -3,7 +3,7 @@
 	"publishConfig": {
 		"access": "restricted"
 	},
-	"version": "1.0.95",
+	"version": "1.0.96",
 	"license": "GPL-3.0-or-later",
 	"name": "@clevercanyon/utilities.bash",
 	"description": "Utilities for apps running in a Bash environment.",
@@ -23,15 +23,15 @@
 	"exports": {
 		".": {
 			"import": "./dist/index.js",
-			"require": "./dist/index.umd.cjs",
+			"require": "./dist/index.cjs",
 			"types": "./dist/types/index.d.ts"
 		}
 	},
-	"sideEffects": ["./src/*.{html,scss,ts,tsx}"],
+	"sideEffects": ["./src/*.{html,scss,ts,tsx}", "./src/resources/init-env.ts"],
 	"module": "./dist/index.js",
-	"main": "./dist/index.umd.cjs",
+	"main": "./dist/index.cjs",
 	"browser": "",
-	"unpkg": "./dist/index.umd.cjs",
+	"unpkg": "./dist/index.js",
 	"types": "./dist/types/index.d.ts",
 	"typesVersions": {
 		">=3.1": {
@@ -40,14 +40,14 @@
 	},
 	"dependencies": {},
 	"peerDependencies": {
-		"@clevercanyon/utilities": "^1.0.112",
-		"@clevercanyon/utilities.node": "^1.0.64"
+		"@clevercanyon/utilities": "^1.0.115",
+		"@clevercanyon/utilities.node": "^1.0.65"
 	},
 	"peerDependenciesMeta": {},
 	"optionalDependencies": {},
 	"bundleDependencies": [],
 	"devDependencies": {
-		"@clevercanyon/skeleton-dev-deps": "^1.0.135"
+		"@clevercanyon/skeleton-dev-deps": "^1.0.138"
 	},
 	"overrides": {},
 	"cpu": ["x64", "arm64"],
@@ -64,7 +64,7 @@
 				},
 				"build": {
 					"appType": "cma",
-					"targetEnv": "opl"
+					"targetEnv": "node"
 				},
 				"github": {
 					"teams": {
