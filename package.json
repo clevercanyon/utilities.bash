@@ -3,7 +3,7 @@
 	"publishConfig": {
 		"access": "restricted"
 	},
-	"version": "1.0.100",
+	"version": "1.0.101",
 	"license": "GPL-3.0-or-later",
 	"name": "@clevercanyon/utilities.bash",
 	"description": "Utilities for apps running in a Bash environment.",
@@ -27,7 +27,7 @@
 			"types": "./dist/types/index.d.ts"
 		}
 	},
-	"sideEffects": ["./src/*.{html,scss,ts,tsx}", "./src/resources/init-env.ts"],
+	"sideEffects": ["./src/resources/init-env.ts", "./src/index.ts"],
 	"module": "./dist/index.js",
 	"main": "./dist/index.cjs",
 	"browser": "",
@@ -40,14 +40,14 @@
 	},
 	"dependencies": {},
 	"peerDependencies": {
-		"@clevercanyon/utilities": "^1.0.124",
-		"@clevercanyon/utilities.node": "^1.0.70"
+		"@clevercanyon/utilities": "^1.0.131",
+		"@clevercanyon/utilities.node": "^1.0.71"
 	},
 	"peerDependenciesMeta": {},
 	"optionalDependencies": {},
 	"bundleDependencies": [],
 	"devDependencies": {
-		"@clevercanyon/skeleton-dev-deps": "^1.0.144"
+		"@clevercanyon/skeleton-dev-deps": "^1.0.156"
 	},
 	"overrides": {},
 	"cpu": ["x64", "arm64"],
@@ -64,7 +64,13 @@
 				},
 				"build": {
 					"appType": "cma",
-					"targetEnv": "node"
+					"targetEnv": "node",
+					"entryFiles": []
+				},
+				"ssrBuild": {
+					"appType": "",
+					"targetEnv": "",
+					"entryFiles": []
 				},
 				"github": {
 					"teams": {
