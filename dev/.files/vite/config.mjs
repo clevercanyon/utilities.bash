@@ -422,14 +422,14 @@ export default async ({ mode, command, ssrBuild: isSSRBuild }) => {
 			entryFileNames: (entry) => {
 				// This function doesn’t have access to the current output format, unfortunately.
 				// However, we are setting `build.lib.formats` explicitly in the configuration below.
-				// Therefore, we know `es` comes first, followed by either `cjs` or `umd` output entries.
+				// Therefore, we know `es` comes first, followed by either `umd` or `cjs` output entries.
 				// So, entry counters make it possible to infer build output format, based on sequence.
 
 				const entryKey = JSON.stringify(entry); // JSON serialization.
 				const entryCounter = Number(rollupEntryCounters.get(entryKey) || 0) + 1;
 
-				const entryFormat = entryCounter > 1 ? 'umd|cjs' : 'es';
-				const entryExt = 'umd|cjs' === entryFormat ? 'cjs' : 'js';
+				const entryFormat = entryCounter > 1 ? (1 === appEntries.length && !['cfw', 'node'].includes(targetEnv) ? 'umd' : 'cjs') : 'es';
+				const entryExt = 'umd' === entryFormat ? 'umd.cjs' : 'cjs' === entryFormat ? 'cjs' : 'js';
 
 				rollupEntryCounters.set(entryKey, entryCounter); // Updates counter.
 
@@ -446,14 +446,14 @@ export default async ({ mode, command, ssrBuild: isSSRBuild }) => {
 			chunkFileNames: (chunk) => {
 				// This function doesn’t have access to the current output format, unfortunately.
 				// However, we are setting `build.lib.formats` explicitly in the configuration below.
-				// Therefore, we know `es` comes first, followed by either `cjs` or `umd` output chunks.
+				// Therefore, we know `es` comes first, followed by either `umd` or `cjs` output chunks.
 				// So, chunk counters make it possible to infer build output format, based on sequence.
 
 				const chunkKey = JSON.stringify(chunk); // JSON serialization.
 				const chunkCounter = Number(rollupChunkCounters.get(chunkKey) || 0) + 1;
 
-				const chunkFormat = chunkCounter > 1 ? 'umd|cjs' : 'es';
-				const chunkExt = 'umd|cjs' === chunkFormat ? 'cjs' : 'js';
+				const chunkFormat = chunkCounter > 1 ? (1 === appEntries.length && !['cfw', 'node'].includes(targetEnv) ? 'umd' : 'cjs') : 'es';
+				const chunkExt = 'umd' === chunkFormat ? 'umd.cjs' : 'cjs' === chunkFormat ? 'cjs' : 'js';
 
 				rollupChunkCounters.set(chunkKey, chunkCounter); // Updates counter.
 				return path.join(path.relative(distDir, a16sDir), '[name]-[hash].' + chunkExt);
