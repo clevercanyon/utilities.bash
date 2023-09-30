@@ -40,8 +40,8 @@
     },
     "dependencies": {},
     "peerDependencies": {
-        "@clevercanyon/utilities": "^1.0.287",
-        "@clevercanyon/utilities.node": "^1.0.112"
+        "@clevercanyon/utilities": "^1.0.291",
+        "@clevercanyon/utilities.node": "^1.0.113"
     },
     "peerDependenciesMeta": {},
     "optionalDependencies": {},
