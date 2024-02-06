@@ -3,7 +3,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "1.0.187",
+    "version": "1.0.188",
     "license": "GPL-3.0-or-later",
     "name": "@clevercanyon/utilities.bash",
     "description": "Utilities for apps running in a Bash environment.",
