@@ -3,7 +3,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "1.0.207",
+    "version": "1.0.208",
     "license": "GPL-3.0-or-later",
     "name": "@clevercanyon/utilities.bash",
     "description": "Utilities for apps running in a Bash environment.",
@@ -44,14 +44,14 @@
     },
     "dependencies": {},
     "peerDependencies": {
-        "@clevercanyon/utilities": "^1.0.923",
-        "@clevercanyon/utilities.node": "^1.0.202"
+        "@clevercanyon/utilities": "^1.0.924",
+        "@clevercanyon/utilities.node": "^1.0.203"
     },
     "peerDependenciesMeta": {},
     "optionalDependencies": {},
     "bundleDependencies": [],
     "devDependencies": {
-        "@clevercanyon/dev-deps": "^1.0.373"
+        "@clevercanyon/dev-deps": "^1.0.374"
     },
     "overrides": {},
     "cpu": ["x64", "arm64"],
