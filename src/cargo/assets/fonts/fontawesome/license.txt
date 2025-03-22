@@ -2,6 +2,13 @@ Fonticons, Inc. (https://fontawesome.com)
 
 --------------------------------------------------------------------------------
 
+Font Awesome Pro License
+
+Commercial license required for pro version.
+See: https://fontawesome.com/license
+
+--------------------------------------------------------------------------------
+
 Font Awesome Free License
 
 Font Awesome Free is free, open source, and GPL friendly. You can use it for
