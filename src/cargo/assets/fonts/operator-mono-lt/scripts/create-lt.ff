@@ -1,0 +1,63 @@
+#!/usr/bin/env fontforge
+
+New()
+ScaleToEm(1000)
+Reencode("unicode")
+SetUniqueID("OperatorMonoLT-Light")
+SetFontNames("OperatorMonoLT-Light", "Operator Mono LT", "Operator Mono LT Light", "Light", "", "1.0.0")
+SetOS2Value("Weight", 300) # Remapping 200 weight to 300 weight.
+MergeFonts("../../operator-mono/0-x-light-regular-200.otf")
+Generate("../0-light-regular-300-lt.otf")
+Close()
+
+New()
+ScaleToEm(1000)
+Reencode("unicode")
+SetUniqueID("OperatorMonoLT-LightItalic")
+SetFontNames("OperatorMonoLT-LightItalic", "Operator Mono LT", "Operator Mono LT Light Italic", "Light Italic", "", "1.0.0")
+SetOS2Value("Weight", 300) # Remapping 200 weight to 300 weight.
+MergeFonts("../../operator-mono/1-x-light-italic-200.otf")
+Generate("../1-light-italic-300-lt.otf")
+Close()
+
+New()
+ScaleToEm(1000)
+Reencode("unicode")
+SetUniqueID("OperatorMonoLT-Book")
+SetFontNames("OperatorMonoLT-Book", "Operator Mono LT", "Operator Mono LT Book", "Book", "", "1.0.0")
+SetOS2Value("Weight", 400) # Remapping 300 weight to 400 weight.
+MergeFonts("../../operator-mono/2-light-regular-300.otf")
+Generate("../2-book-regular-400-lt.otf")
+Close()
+
+New()
+ScaleToEm(1000)
+Reencode("unicode")
+SetUniqueID("OperatorMonoLT-BookItalic")
+SetFontNames("OperatorMonoLT-BookItalic", "Operator Mono LT", "Operator Mono LT Book Italic", "Book Italic", "", "1.0.0")
+SetOS2Value("Weight", 400) # Remapping 300 weight to 400 weight.
+MergeFonts("../../operator-mono/3-light-italic-300.otf")
+Generate("../3-book-italic-400-lt.otf")
+Close()
+
+New()
+ScaleToEm(1000)
+Reencode("unicode")
+SetUniqueID("OperatorMonoLT-Bold")
+SetFontNames("OperatorMonoLT-Bold", "Operator Mono LT", "Operator Mono LT Bold", "Bold", "", "1.0.0")
+SetOS2Value("Weight", 700) # Remapping 500 weight to 700 weight.
+MergeFonts("../../operator-mono/6-medium-regular-500.otf")
+Generate("../4-bold-regular-700-lt.otf")
+Close()
+
+New()
+ScaleToEm(1000)
+Reencode("unicode")
+SetUniqueID("OperatorMonoLT-BoldItalic")
+SetFontNames("OperatorMonoLT-BoldItalic", "Operator Mono LT", "Operator Mono LT Bold Italic", "Bold Italic", "", "1.0.0")
+SetOS2Value("Weight", 700) # Remapping 500 weight to 700 weight.
+MergeFonts("../../operator-mono/7-medium-italic-500.otf")
+Generate("../5-bold-italic-700-lt.otf")
+Close()
+
+Quit(0)

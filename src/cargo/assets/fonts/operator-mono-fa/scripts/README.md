@@ -1,4 +1,4 @@
-# Merging FontAwesome
+# Merging FontAwesome into Operator Mono
 
 ```bash
 $ brew install fontforge
